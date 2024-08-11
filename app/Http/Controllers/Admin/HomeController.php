@@ -33,57 +33,7 @@ class HomeController extends Controller
 
     public function root()
     {
-        $totalAirline = Airline::count();
-        $totalCustomer = User::whereIsAdmin(0)->count();
-        $totalPlane = Plane::count();
-        $totalAirport = Airport::count();
-        $totalFlight = Flight::count();
-        $totalTicket = Ticket::count();
-
-        // get last 10 flights
-        $lastFlights = Flight::orderBy('id', 'desc')->take(10)->get();
-
-        // get active ariline by number of flights
-        $activeAirlines = Airline::query()
-            ->withCount('flights')
-            ->withCount('planes')
-            ->orderBy('flights_count', 'desc')
-            ->take(6)
-            ->get();
-
-        // CHARTS DATA CONFIG
-        // get status of flights
-        $flightStatusChart = DB::table('flights')
-            ->orderBy('status', 'desc')
-            ->select('status', DB::raw('count(*) as total'))
-            ->groupBy('status')
-            ->get()
-            ->map(function ($item) {
-                switch (trim($item->status)) {
-                    case 0:
-                        $item->label = "Land";
-                        $item->color = "#ea868f";
-                        break;
-                    case 1:
-                        $item->label = "Take Off";
-                        $item->color = "#20c997";
-                        break;
-                }
-                return (array) $item;
-            })->toArray();
-
-        $data = [
-            'totalAirline'      => $totalAirline,
-            'totalPlane'        => $totalPlane,
-            'totalAirport'      => $totalAirport,
-            'totalFlight'       => $totalFlight,
-            'totalTicket'       => $totalTicket,
-            'totalCustomer'     => $totalCustomer,
-            'lastFlights'       => $lastFlights,
-            "activeAirlines"    => $activeAirlines,
-            "flightStatusChart" => $flightStatusChart,
-        ];
-        return view('admin.index', compact('data'));
+        return view('admin.index');
     }
 
     public function storeTempFile(Request $request)
