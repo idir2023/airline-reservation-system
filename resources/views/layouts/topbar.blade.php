@@ -22,6 +22,7 @@
         </a>
       </div>
 
+      
       <button type="button" class="btn btn-sm font-size-16 header-item waves-effect px-3" id="vertical-menu-btn">
         <i class="fa fa-fw fa-bars"></i>
       </button>
@@ -69,7 +70,6 @@
           }
         </script>
       </div>
-
 
       <div class="dropdown d-inline-block">
         <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

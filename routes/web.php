@@ -14,11 +14,9 @@ use App\Http\Controllers\Admin\{
     ProfileController,
     TicketController,
     VisaController,
-    AssuranceController
+    AssuranceController,
+    ConsultationController
 };
-
-use App\Http\Controllers\SandboxController;
-use App\Http\Controllers\SidebarControler;
 
 Auth::routes();
 
@@ -57,6 +55,9 @@ Route::group(["prefix" => 'dashboard'], function () {
 
             // assurances
             Route::resource("assurances", AssuranceController::class);
+
+            // consultations
+            Route::resource("consultations", ConsultationController::class);
 
             //airports
             Route::resource("airports", AirportController::class)->except('show');

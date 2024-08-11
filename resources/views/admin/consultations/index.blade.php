@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Assurances
+Consultations
 @endsection
 
 @section('css')
@@ -12,13 +12,13 @@ Assurances
 @section('content')
     @component('components.breadcrumb')
         @slot('li_1')
-        Assurances
+        Consultations
         @endslot
         @slot('li_2')
             {{ route('assurances.index') }}
         @endslot
         @slot('title')
-        Liste des Assurances
+        Liste des Consultations
         @endslot
     @endcomponent
 
@@ -27,10 +27,10 @@ Assurances
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-end mb-4" id="action_btns">
-                        <a href="{{ route('assurances.create') }}"
+                        <a href="{{ route('consultations.create') }}"
                             class="btn btn-rounded btn-success waves-effect waves-light ms-2">
                             <i class="bx bx-plus font-size-16 me-2 align-middle"></i>
-                            @lang('translation.add_resource', ['resource' => __('Assurances')])
+                            @lang('translation.add_resource', ['resource' => __('Consultations')])
                         </a>
                     </div>
                     <table id="datatable" class="table-hover table-bordered nowrap w-100 table">
@@ -82,7 +82,7 @@ Assurances
                         "previous": "@lang('translation.paginatePrevious')"
                     },
                 },
-                ajax: "{{ route('assurances.index') }}",
+                ajax: "{{ route('consultations.index') }}",
                 columns: [{
                         data: 'id'
                     },

@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="row mb-4">
-                  <label for="pdf" class="col-sm-3 col-form-label">@lang('upload_pdf')</label>
+                  <label for="pdf" class="col-sm-3 col-form-label">@lang('upload pdf')</label>
                   <div class="col-sm-9">
                     <input type="file" class="form-control" id="pdf" name="pdf" required>
                     <div class="valid-feedback">

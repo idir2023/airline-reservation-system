@@ -37,6 +37,13 @@
                         </a>
                     </li>
 
+                    <li class="{{ request()->routeIs('consultations.*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('consultations.index') }}" class="waves-effect">
+                            <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
+                            <span>@lang('Consultations')</span>
+                        </a>
+                    </li>                    
+
                     <li class="{{ request()->routeIs('airlines.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('airlines.index') }}" class="waves-effect">
                             <i class='bx bx-globe'></i>
