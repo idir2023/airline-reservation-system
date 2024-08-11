@@ -16,6 +16,28 @@
             </a>
           </li>
 
+          <li class="{{ request()->routeIs('visas.*') ? 'mm-active' : '' }}">
+            <a href="{{ route('visas.index') }}" class="waves-effect">
+              <i class="bx bx-credit-card"></i>
+              <span>@lang('visas')</span>
+            </a>
+          </li>
+
+          <li class="{{ request()->routeIs('actualites.*') ? 'mm-active' : '' }}">
+            <a href="{{ route('actualites.index') }}" class="waves-effect">
+              <i class="bx bx-news"></i> <!-- Icon for news -->
+              <span>@lang('Actualités')</span>
+            </a>
+          </li>    
+
+          <li class="{{ request()->routeIs('assurances.*') ? 'mm-active' : '' }}">
+            <a href="{{ route('assurances.index') }}" class="waves-effect">
+              <i class="bx bx-news"></i> <!-- Icon for news -->
+              <span>@lang('assurances')</span>
+            </a>
+          </li>    
+
+
           <li class="{{ request()->routeIs('airlines.*') ? 'mm-active' : '' }}">
             <a href="{{ route('airlines.index') }}" class="waves-effect">
               <i class='bx bx-globe'></i>
@@ -72,21 +94,7 @@
                 </a>
               </li>
             </ul>
-          </li>
-
-          <li class="{{ request()->routeIs('visas.*') ? 'mm-active' : '' }}">
-            <a href="{{ route('visas.index') }}" class="waves-effect">
-              <i class="bx bx-credit-card"></i>
-              <span>@lang('visas')</span>
-            </a>
-          </li>
-
-          <li class="{{ request()->routeIs('actualites.*') ? 'mm-active' : '' }}">
-            <a href="{{ route('actualites.index') }}" class="waves-effect">
-              <i class="bx bx-news"></i> <!-- Icon for news -->
-              <span>@lang('Actualités')</span>
-            </a>
-          </li>          
+          </li>      
 
           <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
             <a href="{{ route('customers.index') }}" class="waves-effect">

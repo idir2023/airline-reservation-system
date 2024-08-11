@@ -13,7 +13,8 @@ use App\Http\Controllers\Admin\{
     FlightController,
     ProfileController,
     TicketController,
-    VisaController
+    VisaController,
+    AssuranceController
 };
 
 use App\Http\Controllers\SandboxController;
@@ -54,6 +55,8 @@ Route::group(["prefix" => 'dashboard'], function () {
             //Actualite
             Route::resource("actualites", ActualiteController::class);
 
+            // assurances
+            Route::resource("assurances", AssuranceController::class);
 
             //airports
             Route::resource("airports", AirportController::class)->except('show');
