@@ -6,8 +6,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     ActualiteController,
     HomeController,
+    AirlineController,
+    AirportController,
     CustomerController,
+    FlightController,
     ProfileController,
+    TicketController,
     VisaController,
     AssuranceController,
     ConsultationController
@@ -27,6 +31,7 @@ Route::group(["prefix" => 'dashboard'], function () {
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [HomeController::class, 'root'])->name('root');
+
 
             //visas
             Route::resource("visas", VisaController::class);
@@ -54,6 +59,8 @@ Route::get('/index/{locale}', [HomeController::class, 'lang']);
 
 Route::post('/store-temp-file', [HomeController::class, 'storeTempFile'])->name('storeTempFile');
 Route::post('/delete-temp-file', [HomeController::class, 'deleteTempFile'])->name('deleteTempFile');
+
+Route::get('/get-random-customer', [SandboxController::class, 'randomCustomer'])->name('randomCustomer');
 
 //render files inside views/template folder
 Route::get('{any}', [HomeController::class, 'index'])->name('index');
