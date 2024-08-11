@@ -5,16 +5,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\{
     ActualiteController,
+    AppointmentController,
     HomeController,
-    AirlineController,
-    AirportController,
     CustomerController,
-    FlightController,
     ProfileController,
-    TicketController,
     VisaController,
     AssuranceController,
-    ConsultationController
+    ConsultationController,
+    RendezVousController
 };
 
 Auth::routes();
@@ -44,6 +42,9 @@ Route::group(["prefix" => 'dashboard'], function () {
 
             // consultations
             Route::resource("consultations", ConsultationController::class);
+
+            // Rendezvous
+            Route::resource("appointments", AppointmentController::class);
 
             //customers
             Route::get("customers", [CustomerController::class, "index"])->name('customers.index');

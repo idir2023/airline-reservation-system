@@ -42,8 +42,16 @@
                             <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
                             <span>@lang('Consultations')</span>
                         </a>
-                    </li>                    
+                    </li>   
+                    
+                    <li class="{{ request()->routeIs('appointments.*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('appointments.index') }}" class="waves-effect">
+                            <i class="bx bx-calendar-plus"></i> <!-- Example icon for consultations -->
+                            <span>@lang('Rendez-vous')</span>
+                        </a>
+                    </li>   
 
+                
                     <li class="{{ request()->routeIs('customers.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('customers.index') }}" class="waves-effect">
                             <i class='bx bx-user'></i>
