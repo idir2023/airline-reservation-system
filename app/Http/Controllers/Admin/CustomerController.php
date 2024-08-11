@@ -13,9 +13,8 @@ class CustomerController extends Controller
     {
         if ($request->ajax()) {
             $data = User::query()
-                ->customer()
-                ->withCount('tickets');
-            return DataTables::of($data)->addIndexColumn()
+                ->customer(); 
+               return DataTables::of($data)->addIndexColumn()
                 ->setRowClass(fn ($row) => 'align-middle')
                 ->addColumn('action', function ($row) {
                     $td = '<td>';
@@ -25,11 +24,9 @@ class CustomerController extends Controller
                     $td .= "</td>";
                     return $td;
                 })
-                ->editColumn('tickets_count', function ($row) {
-                    return '<span class="badge badge-pill badge-soft-info font-size-14">' . $row->tickets_count . '</span>';
-                })
+
                 ->editColumn('created_at', fn ($row) => formatDate($row->created_at))
-                ->rawColumns(['action', 'tickets_count'])
+                ->rawColumns(['action'])
                 ->make(true);
         }
         return view('admin.customers.index');

@@ -33,7 +33,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>No Of Tickets</th>
                 <th> @lang('translation.created_at')</th>
                 <th> @lang('translation.actions')</th>
               </tr>
@@ -90,10 +89,6 @@
           },
           {
             data: 'phone'
-          },
-          {
-            data: 'tickets_count',
-            searchable: false,
           },
           {
             data: 'created_at',
