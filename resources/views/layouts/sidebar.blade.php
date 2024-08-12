@@ -44,12 +44,6 @@
                         </a>
                     </li>   
                     
-                    <li class="{{ request()->routeIs('appointments.*') ? 'mm-active' : '' }}">
-                        <a href="{{ route('appointments.index') }}" class="waves-effect">
-                            <i class="bx bx-calendar-plus"></i> <!-- Example icon for consultations -->
-                            <span>@lang('Rendez-vous')</span>
-                        </a>
-                    </li>   
                     <li class="{{ request()->routeIs('contact.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('contact.index') }}" class="waves-effect">
                             <i class="bx bx-envelope"></i>

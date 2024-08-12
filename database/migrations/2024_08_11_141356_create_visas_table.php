@@ -14,6 +14,8 @@ return new class extends Migration
             $table->string('destination_visa'); // Destination du visa
             $table->string('motif'); // Motif du visa
             $table->text('description')->nullable(); // Description (peut être null)
+            $table->string('image')->nullable(); // Image is optional
+            $table->string('lieu'); // Lieu du visa
             $table->string('pdf_path')->nullable()->default('');
             $table->timestamps();
         });

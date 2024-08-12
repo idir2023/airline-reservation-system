@@ -38,6 +38,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Nom Complet</th>
+                                <th>Lieux de Dépot</th>
                                 <th>Date de Dépôt</th>
                                 <th>Date de Réponse</th>
                                 <th>Accordé ou Non</th>
@@ -87,6 +88,7 @@
                 columns: [
                     { data: 'id' },
                     { data: 'nomcomplet' },
+                    { data: 'lieu_depot' },
                     { data: 'datededepot' },
                     { data: 'dateReponse' },
                     { data: 'accordounon' },

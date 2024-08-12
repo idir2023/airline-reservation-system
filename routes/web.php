@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\{
     ActualiteController,
-    AppointmentController,
     HomeController,
     CustomerController,
     ProfileController,
@@ -13,7 +12,6 @@ use App\Http\Controllers\Admin\{
     AssuranceController,
     ConsultationController,
     ContactController,
-    RendezVousController,
     ReviewController
 };
 
@@ -27,11 +25,9 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
         Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
-
         /* ================== ADMIN ROUTES ================== */
         Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [HomeController::class, 'root'])->name('root');
-
 
             //visas
             Route::resource("visas", VisaController::class);
@@ -44,14 +40,13 @@ Route::group(["prefix" => 'dashboard'], function () {
 
             // consultations
             Route::resource("consultations", ConsultationController::class);
-
-            // Rendezvous
-            Route::resource("appointments", AppointmentController::class);
-             // CONTACT us
-             Route::resource("contact", ContactController::class);
+            
+            // CONTACT us
+            Route::resource("contact", ContactController::class);
 
             // Reviews
-               Route::resource("reviews", ReviewController::class);
+            Route::resource("reviews", ReviewController::class);
+
             //customers
             Route::get("customers", [CustomerController::class, "index"])->name('customers.index');
             Route::get("customers/{user}", [CustomerController::class, "show"])->name('customers.show');

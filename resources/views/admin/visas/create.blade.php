@@ -49,6 +49,33 @@
                 </div>
 
                 <div class="row mb-4">
+                  <label for="image" class="col-sm-3 col-form-label">@lang('image')</label>
+                  <div class="col-sm-9">
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                    <div class="valid-feedback">
+                      @lang('validation.good')
+                    </div>
+                    <div class="invalid-feedback">
+                      @lang('validation.required', ['attribute' => __('image')])
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-4">
+                  <label for="lieu" class="col-sm-3 col-form-label">@lang('lieu')</label>
+                  <div class="col-sm-9">
+                      <input type="text" class="form-control" id="lieu" name="lieu" value="{{ old('lieu') }}" required>
+                      <div class="valid-feedback">
+                          @lang('validation.good')
+                      </div>
+                      <div class="invalid-feedback">
+                          @lang('validation.required', ['attribute' => __('lieu')])
+                      </div>
+                  </div>
+              </div>
+              
+
+                <div class="row mb-4">
                   <label for="destination_visa" class="col-sm-3 col-form-label">@lang('destination')</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="destination_visa" name="destination_visa" value="{{ old('destination_visa') }}" required>

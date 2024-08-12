@@ -13,5 +13,7 @@ class Visa extends Model
         'motif',
         'description',
         'pdf_path',
+        'image',
+        'lieu'
     ];
 }

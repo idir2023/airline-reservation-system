@@ -24,7 +24,12 @@ class ReviewController extends Controller
                         '<a href="javascript:void(0)" data-id="' . $row->id . '" data-url="' . route('reviews.destroy', $row->id) . '" class="btn btn-sm btn-danger delete-btn">' . __('buttons.delete') . '</a>' .
                     '</div>';
                 })
-                ->rawColumns(['action'])
+                ->addColumn('accordounon', function ($review) {
+                    return $review->accordounon 
+                        ? '<span style="color: green; font-weight: bold;">Accordé</span>' 
+                        : '<span style="color: red; font-weight: bold;">Non Accordé</span>';
+                })
+                ->rawColumns(['action','accordounon'])
                 ->make(true);
         }
 
@@ -37,22 +42,25 @@ class ReviewController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $request->validate([
-            'nomcomplet' => 'required|string|max:255',
-            'datededepot' => 'required|date',
-            'dateReponse' => 'nullable|date',
-            'accordounon' => 'required|boolean',
-            'description' => 'required|string',
-        ]);
+{
+    $validatedData = $request->validate([
+        'nomcomplet' => 'required|string|max:255',
+        'datededepot' => 'required|date',
+        'dateReponse' => 'nullable|date',
+        'accordounon' => 'required|boolean',
+        'description' => 'required|string',
+        'lieu_depot' => 'nullable|string|max:255', // Ajout de max:255 pour assurer la cohérence avec les autres champs
+    ]);
 
-        Review::create($request->all());
+    // Créez la Review avec les données validées
+    Review::create($validatedData);
 
-        return redirect()->route('reviews.index')->with([
-            'message' => 'Review créée avec succès!',
-            'icon' => 'success',
-        ]);
-    }
+    // Redirigez avec un message de succès
+    return redirect()->route('reviews.index')->with([
+        'message' => 'Review créée avec succès!',
+        'icon' => 'success',
+    ]);
+}
 
     public function show(Review $review)
     {
@@ -72,6 +80,8 @@ class ReviewController extends Controller
             'dateReponse' => 'nullable|date',
             'accordounon' => 'required|boolean',
             'description' => 'required|string',
+            'lieu_depot' => 'nullable|string|max:255', // Ajout de max:255 pour assurer la cohérence avec les autres champs
+
         ]);
 
         $review->update($request->all());

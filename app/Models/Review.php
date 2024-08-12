@@ -9,6 +9,6 @@ class Review extends Model
 {
     protected $table = 'reviews'; 
     protected $fillable = [
-        'nomcomplet', 'datededepot', 'dateReponse', 'accordounon', 'description'
+        'nomcomplet', 'datededepot', 'dateReponse','lieu_depot', 'accordounon', 'description'
     ];
 }

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->string('nomcomplet');
             $table->date('datededepot');
+            $table->string('lieu_depot');
             $table->date('dateReponse')->nullable();
             $table->boolean('accordounon');
             $table->text('description');

@@ -81,6 +81,38 @@
                                 </div>
 
                                 <div class="row mb-4">
+                                    <label for="lieu" class="col-sm-3 col-form-label">@lang('lieu')</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="lieu" name="lieu"
+                                            value="{{ old('lieu', $visa->lieu) }}" required>
+                                        <div class="valid-feedback">
+                                            @lang('validation.good')
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            @lang('validation.required', ['attribute' => __('lieu')])
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <label for="image" class="col-sm-3 col-form-label">@lang('image')</label>
+                                    <div class="col-sm-9">
+                                        <!-- Display the old image if it exists -->
+                                        @if ($visa->image)
+                                            <div class="mb-2">
+                                                <img src="{{ Storage::disk('public')->url($visa->image) }}" alt="Visa Image" class="img-thumbnail" style="max-width: 150px;">
+                                            </div>
+                                        @endif
+
+                                        <!-- Input field to upload a new image -->
+                                        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                                        <div class="valid-feedback">
+                                            @lang('validation.good')
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
                                     <label for="description" class="col-sm-3 col-form-label">@lang('description')</label>
                                     <div class="col-sm-9">
                                         <textarea class="form-control" id="description" name="description" required>{{ old('description', $visa->description) }}</textarea>
@@ -117,7 +149,6 @@
                                     </div>
                                 </div>
 
-
                                 <div class="row justify-content-end">
                                     <div class="col-sm-9">
                                         <div>
@@ -128,8 +159,6 @@
                             </div>
                         </div>
                     </form>
-
-
                 </div>
             </div>
             <!-- end card -->
