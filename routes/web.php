@@ -54,7 +54,15 @@ Route::group(["prefix" => 'dashboard'], function () {
     });
 });
 
-Route::view('/', 'index');
+// client 
+Route::view('/', 'client.index');
+Route::get('/visa', [HomeController::class, 'getvisa'])->name('visa');
+Route::get('/actualite', [HomeController::class, 'getactualite'])->name('actualite');
+Route::get('/consultation', [HomeController::class, 'getconsultation'])->name('consultation');
+Route::get('/assuarance', [HomeController::class, 'getassuarance'])->name('assuarance');
+Route::get('/contact', [HomeController::class, 'getcontact'])->name('contact');
+// 
+
 
 //Language Translation
 Route::get('/index/{locale}', [HomeController::class, 'lang']);

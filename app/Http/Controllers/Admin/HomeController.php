@@ -35,6 +35,33 @@ class HomeController extends Controller
     {
         return view('admin.index');
     }
+    // 
+    public function getvisa()
+    {
+        return view('client.visas');
+    }
+
+    public function getactualite()
+    {
+        return view('client.actualite');
+    }
+
+    public function getconsultation()
+    {
+        return view('client.consultation');
+    }
+
+    public function getassuarance()
+    {
+        return view('client.assuarance');
+    }
+
+    public function getcontact()
+    {
+        return view('client.contact');
+    }
+
+    // 
 
     public function storeTempFile(Request $request)
     {
