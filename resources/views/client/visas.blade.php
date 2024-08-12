@@ -14,7 +14,9 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -34,7 +36,8 @@
 
 <body>
     <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
         <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
             <span class="visually-hidden">Loading...</span>
         </div>
@@ -53,13 +56,22 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a href="{{ url('/') }}" class="nav-item nav-link active">Home</a>
-                    <a href="{{ route('visa') }}" class="nav-item nav-link">Visas</a>
-                    <a href="{{ route('actualite') }}" class="nav-item nav-link">Actualite</a>
-                    <a href="{{ route('consultation') }}" class="nav-item nav-link">Consultation</a>
-                    <a href="{{ route('assuarance') }}" class="nav-item nav-link">Assurances</a>
-                    <a href="{{ route('contact') }}" class="nav-item nav-link">Contact Us</a>                    
+                    <a href="{{ url('/') }}"
+                        class="nav-item nav-link {{ request()->is('/') ? 'active' : '' }}">Home</a>
+                    <a href="{{ route('visa') }}"
+                        class="nav-item nav-link {{ request()->routeIs('visa') ? 'active' : '' }}">Visas</a>
+                    <a href="{{ route('actualite') }}"
+                        class="nav-item nav-link {{ request()->routeIs('actualite') ? 'active' : '' }}">Actualite</a>
+                    <a href="{{ route('consultation') }}"
+                        class="nav-item nav-link {{ request()->routeIs('consultation') ? 'active' : '' }}">Consultation</a>
+                    <a href="{{ route('assuarance') }}"
+                        class="nav-item nav-link {{ request()->routeIs('assuarance') ? 'active' : '' }}">Assurances</a>
+                    <a href="{{ route('contact') }}"
+                        class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
                 </div>
+                <a href="{{ route('login') }}" class="nav-item nav-link btn btn-outline-primary me-2">Login</a>
+                <a href="{{ route('register') }}" class="nav-item nav-link btn btn-primary text-white">Sign Up</a>
+
             </div>
         </nav>
         <div class="container-fluid bg-primary py-5 mb-5 hero-header">
@@ -71,7 +83,8 @@
                             <ol class="breadcrumb justify-content-center">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Informations sur Visas</li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Informations sur Visas
+                                </li>
                             </ol>
                         </nav>
                     </div>
@@ -123,31 +136,39 @@
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
                     <div class="d-flex pt-2">
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i
+                                class="fab fa-facebook-f"></i></a>
                         <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i
+                                class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Gallery</h4>
                     <div class="row g-2 pt-2">
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-1.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-1.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-2.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-2.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-3.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-3.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-2.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-2.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-3.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-3.jpg') }}"
+                                alt="">
                         </div>
                         <div class="col-4">
-                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-1.jpg') }}" alt="">
+                            <img class="img-fluid bg-light p-1" src="{{ asset('client/img/package-1.jpg') }}"
+                                alt="">
                         </div>
                     </div>
                 </div>
