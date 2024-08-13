@@ -13,7 +13,8 @@ use App\Http\Controllers\Admin\{
     ConsultationController,
     ContactController,
     ReviewController,
-    ConsultationFormulaireController
+    ConsultationFormulaireController,
+    AssuranceFormulaireController
 };
 
 Auth::routes();
@@ -44,6 +45,9 @@ Route::group(["prefix" => 'dashboard'], function () {
 
             //Consultation-Formulaire
             Route::resource("consultation-formulaire",ConsultationFormulaireController::class);
+
+            //Assurance-Formulaire
+            Route::resource("assurance-formulaire",AssuranceFormulaireController::class);
             
             // CONTACT us
             Route::resource("contact", ContactController::class);
@@ -69,7 +73,9 @@ Route::get('/contact', [HomeController::class, 'getcontact'])->name('contact');
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 // save consultation-formulaire
-Route::post('/save-consultation-formulaire', [HomeController::class, 'save_consultation_formulaire'])->name('consultation-formulaire.store');
+Route::post('/save-consultation-formulaire', [HomeController::class, 'save_consultation_formulaire'])->name('save_consultation_formulaire');
+Route::post('/save-assuarance-formulaire', [HomeController::class, 'save_assuarance_formulaire'])->name('save_assuarance_formulaire');
+
 
 //Language Translation
 Route::get('/index/{locale}', [HomeController::class, 'lang']);

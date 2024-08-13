@@ -111,7 +111,7 @@
                                         </div>
                                         <div class="modal-body">
                                             <form id="consultationForm{{ $consultation->id }}" method="POST"
-                                                action="{{ route('consultation-formulaire.store') }}">
+                                                action="{{ route('save_consultation_formulaire') }}">
                                                 @csrf
                                                 <input type="hidden" name="consultation_id"
                                                     value="{{ $consultation->id }}">

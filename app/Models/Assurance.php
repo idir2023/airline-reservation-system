@@ -10,4 +10,9 @@ class Assurance extends Model
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'image'];
+
+    public function formulaires()
+    {
+        return $this->hasMany(ConsultationFormulaire::class, 'assurance_id');
+    }
 }

@@ -37,19 +37,26 @@
                         </a>
                     </li>
 
+                    <li class="{{ request()->routeIs('assurance-formulaire.*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('assurance-formulaire.index') }}" class="waves-effect">
+                            <i class="bx bxs-shield"></i> <!-- Updated icon for Assurance Client -->
+                            <span>@lang('Assurance Client')</span>
+                        </a>
+                    </li>                    
+
                     <li class="{{ request()->routeIs('consultations.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('consultations.index') }}" class="waves-effect">
                             <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
                             <span>@lang('Consultations')</span>
                         </a>
                     </li> 
-                    
+              
                     <li class="{{ request()->routeIs('consultation-formulaire.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('consultation-formulaire.index') }}" class="waves-effect">
-                            <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
+                            <i class="bx bxs-user-voice"></i> <!-- Updated icon for consultations -->
                             <span>@lang('Consultation Client')</span>
                         </a>
-                    </li> 
+                    </li>                    
                     
                     <li class="{{ request()->routeIs('contact.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('contact.index') }}" class="waves-effect">

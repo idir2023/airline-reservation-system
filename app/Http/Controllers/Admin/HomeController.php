@@ -11,6 +11,7 @@ use App\Models\Actualite;
 use App\Models\User;
 use App\Models\Visa;
 use App\Models\Assurance;
+use App\Models\AssuranceFormulaire;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -90,6 +91,26 @@ class HomeController extends Controller
         return response()->json([
             'success' =>
             'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.',
+        ]);
+    }
+
+    public function save_assuarance_formulaire(Request $request)
+    {
+        // Validate the request data
+        $validated = $request->validate([
+            'assurance_id' => 'required|exists:assurances,id',
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'numerTele' => 'required|string|max:20',
+        ]);
+    
+        // Store the data in the database
+        AssuranceFormulaire::create($validated);
+        
+        // Return a JSON response
+        return response()->json([
+            'success' => 'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.',
         ]);
     }
     

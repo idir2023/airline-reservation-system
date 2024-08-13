@@ -50,7 +50,17 @@ class ReviewController extends Controller
         'accordounon' => 'required|boolean',
         'description' => 'required|string',
         'lieu_depot' => 'nullable|string|max:255', // Ajout de max:255 pour assurer la cohérence avec les autres champs
-    ]);
+    ],
+    [
+        'nomcomplet.required' => 'Le nom complet est obligatoire.',
+        'datededepot.required' => 'La date de dépôt est obligatoire.',
+        'datededepot.date' => 'La date de dépôt doit être une date valide.',
+        'accordounon.required' => 'Le champ Accord ou Non est obligatoire.',
+        'accordounon.boolean' => 'Le champ Accord ou Non doit être vrai ou faux.',
+        'description.required' => 'La description est obligatoire.',
+        'lieu_depot.max' => 'Le lieu de dépôt ne doit pas dépasser 255 caractères.',
+    ]
+);
 
     // Créez la Review avec les données validées
     Review::create($validatedData);
@@ -80,10 +90,17 @@ class ReviewController extends Controller
             'dateReponse' => 'nullable|date',
             'accordounon' => 'required|boolean',
             'description' => 'required|string',
-            'lieu_depot' => 'nullable|string|max:255', // Ajout de max:255 pour assurer la cohérence avec les autres champs
-
+            'lieu_depot' => 'nullable|string|max:255',
+        ], [
+            'nomcomplet.required' => 'Le nom complet est obligatoire.',
+            'datededepot.required' => 'La date de dépôt est obligatoire.',
+            'datededepot.date' => 'La date de dépôt doit être une date valide.',
+            'accordounon.required' => 'Le champ Accord ou Non est obligatoire.',
+            'accordounon.boolean' => 'Le champ Accord ou Non doit être vrai ou faux.',
+            'description.required' => 'La description est obligatoire.',
+            'lieu_depot.max' => 'Le lieu de dépôt ne doit pas dépasser 255 caractères.',
         ]);
-
+        
         $review->update($request->all());
 
         return redirect()->route('reviews.index')->with([

@@ -21,6 +21,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
+
                     @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -104,7 +105,7 @@
                         <div class="row mb-4">
                             <label for="description" class="col-sm-3 col-form-label">@lang('Description')</label>
                             <div class="col-sm-9">
-                                <textarea class="form-control" id="description" name="description" required>{{ old('description') }}</textarea>
+                                <textarea class="form-control" id="description" name="description" >{{ old('description') }}</textarea>
                                 <div class="valid-feedback">
                                     @lang('validation.good')
                                 </div>
