@@ -60,7 +60,7 @@ class ConsultationController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,webp,png|max:2048',
         ]);
 
         $data = $request->only('title', 'description');
@@ -111,7 +111,7 @@ class ConsultationController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'string',
-            'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,webp,png|max:2048',
         ]);
 
         $data = $request->only('title', 'description');

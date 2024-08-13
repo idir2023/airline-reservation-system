@@ -3,17 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Airline;
-use App\Models\Airport;
-use App\Models\Flight;
-use App\Models\Plane;
-use App\Models\Ticket;
+use App\Models\Consultation;
+use App\Models\ConsultationFormulaire;
+
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -48,7 +45,8 @@ class HomeController extends Controller
 
     public function getconsultation()
     {
-        return view('client.consultation');
+        $consultations=Consultation::all();
+        return view('client.consultation',compact('consultations'));
     }
 
     public function getassuarance()
@@ -61,6 +59,33 @@ class HomeController extends Controller
         return view('client.contact');
     }
 
+    public function save_consultation_formulaire(Request $request)
+    {
+        // Validate the request data
+        $request->validate([
+            'consultation_id' => 'required|exists:consultations,id',
+            'nom' => 'required|string|max:255',
+            'prenom' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'numerTele' => 'required|string|max:20',
+        ]);
+    
+        // Store the data in the database
+        ConsultationFormulaire::create([
+            'consultation_id' => $request->consultation_id,
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'description' => $request->description,
+            'numerTele' => $request->numerTele,
+        ]);
+    
+        // Return a JSON response
+        return response()->json([
+            'success' =>
+            'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.',
+        ]);
+    }
+    
     // 
 
     public function storeTempFile(Request $request)

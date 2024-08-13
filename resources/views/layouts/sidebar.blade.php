@@ -42,19 +42,26 @@
                             <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
                             <span>@lang('Consultations')</span>
                         </a>
-                    </li>   
+                    </li> 
+                    
+                    <li class="{{ request()->routeIs('consultation-formulaire.*') ? 'mm-active' : '' }}">
+                        <a href="{{ route('consultation-formulaire.index') }}" class="waves-effect">
+                            <i class="bx bx-calendar"></i> <!-- Example icon for consultations -->
+                            <span>@lang('Consultation Client')</span>
+                        </a>
+                    </li> 
                     
                     <li class="{{ request()->routeIs('contact.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('contact.index') }}" class="waves-effect">
                             <i class="bx bx-envelope"></i>
-                            <span>@lang('contact')</span>
+                            <span>@lang('Contact')</span>
                         </a>
                     </li>  
                     <li class="{{ request()->routeIs('reviews.*') ? 'mm-active' : '' }}">
                         <a href="{{ route('reviews.index') }}" class="waves-effect">
                             <i class="bx bx-star"></i>
 
-                            <span>@lang('reviews')</span>
+                            <span>@lang('Reviews')</span>
                         </a>
                     </li>  
 

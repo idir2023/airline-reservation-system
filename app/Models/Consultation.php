@@ -12,4 +12,9 @@ class Consultation extends Model
         'description',
         'image'
     ];
+
+    public function formulaires()
+    {
+        return $this->hasMany(ConsultationFormulaire::class, 'consultation_id');
+    }
 }
