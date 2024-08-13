@@ -6,7 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Consultation;
 use App\Models\ConsultationFormulaire;
 
+use App\Models\Actualite;
+
 use App\Models\User;
+use App\Models\Visa;
+use App\Models\Assurance;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -35,24 +39,27 @@ class HomeController extends Controller
     // 
     public function getvisa()
     {
-        return view('client.visas');
+        $visas = Visa::all(); // Récupère toutes les informations sur les visas depuis la base de données
+        return view('client.visas', compact('visas'));
     }
+    
 
-    public function getactualite()
+     public function getactualite()
     {
-        return view('client.actualite');
+            $actualites = Actualite::all(); // Récupère toutes les actualités depuis la base de données
+            return view('client.actualite', compact('actualites'));
     }
-
     public function getconsultation()
     {
         $consultations=Consultation::all();
         return view('client.consultation',compact('consultations'));
     }
-
     public function getassuarance()
     {
-        return view('client.assuarance');
+        $assurances = Assurance::all(); // Récupère toutes les assurances depuis la base de données
+        return view('client.assuarance', compact('assurances'));
     }
+    
 
     public function getcontact()
     {

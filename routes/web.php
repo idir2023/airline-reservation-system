@@ -66,6 +66,8 @@ Route::get('/consultation', [HomeController::class, 'getconsultation'])->name('c
 Route::get('/assuarance', [HomeController::class, 'getassuarance'])->name('assuarance');
 Route::get('/contact', [HomeController::class, 'getcontact'])->name('contact');
 
+Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
+
 // save consultation-formulaire
 Route::post('/save-consultation-formulaire', [HomeController::class, 'save_consultation_formulaire'])->name('consultation-formulaire.store');
 
