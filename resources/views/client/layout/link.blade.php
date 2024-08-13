@@ -12,5 +12,15 @@
     <a href="{{ route('contact') }}"
         class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
 </div>
-<a href="{{ route('login') }}" class="nav-item nav-link btn btn-outline-primary me-2">Login</a>
-<a href="{{ route('register') }}" class="nav-item nav-link btn btn-primary text-white">Sign Up</a>
+@if(Auth::check())
+    <!-- Utilisateur connecté, afficher le bouton de déconnexion -->
+    <a href="{{ route('logout') }}" class="nav-item nav-link btn btn-outline-danger me-2"
+       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+@else
+    <!-- Utilisateur non connecté, afficher les liens de connexion et d'inscription -->
+    <a href="{{ route('login') }}" class="nav-item nav-link btn btn-outline-primary me-2">Login</a>
+    <a href="{{ route('register') }}" class="nav-item nav-link btn btn-primary text-white">Sign Up</a>
+@endif

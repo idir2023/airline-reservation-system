@@ -53,37 +53,44 @@
                 <h1 class="mb-5">Available Visa Types</h1>
             </div>
             <div class="row g-4">
-                @foreach($visas as $visa)
-                <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="visa-item border rounded p-4">
-                        @if($visa->image)
-                        <img class="img-fluid" src="{{ Storage::disk('public')->url($visa->image) }}" alt="{{ $visa->type_visa }}" class="img-fluid mb-3 rounded" style="width: 100%; height: auto;">
-                        @endif
-                        <h5 class="p-4" class="mb-3">{{ $visa->type_visa }}</h5>
-                        <p> {{ $visa->motif }}</p>
-                        <p>{{ $visa->destination_visa }}</p>
-                        <p> {{ $visa->description }}</p>
-                        @if($visa->pdf_path)
-                            <a href="{{ asset('storage/' . $visa->pdf_path) }}" class="btn btn-primary mt-2" target="_blank">View PDF</a>
-                        @endif
+                @foreach ($visas as $visa)
+                    <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="visa-item border rounded p-4">
+                            @if ($visa->image)
+                                <img class="img-fluid" src="{{ Storage::disk('public')->url($visa->image) }}"
+                                    alt="{{ $visa->type_visa }}" class="img-fluid mb-3 rounded"
+                                    style="width: 100%; height: auto;">
+                            @endif
+                            <h5 class="p-4" class="mb-3">{{ $visa->type_visa }}</h5>
+                            <p> {{ $visa->motif }}</p>
+                            <p>{{ $visa->destination_visa }}</p>
+                            <p> {{ $visa->description }}</p>
+
+                            @if ($visa->pdf_path)
+                                <a href="{{ Storage::disk('public')->url($visa->pdf_path) }}"
+                                    class="btn btn-primary mt-2" target="_blank">
+                                    View PDF
+                                </a>
+                            @endif
+
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
     <!-- Visa Information Display End -->
-    
+
 
     <!-- Footer Start -->
-  @include('client.layout.footer')
+    @include('client.layout.footer')
     <!-- Footer End -->
 
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
     <!-- JavaScript Libraries -->
-  @include('client.layout.script')
+    @include('client.layout.script')
 </body>
 
 </html>
