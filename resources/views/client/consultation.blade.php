@@ -5,41 +5,43 @@
 
 <style>
     .package-item {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-    border: 1px solid #ddd; /* Border for visual separation */
-    border-radius: 8px;
-    overflow: hidden;
-    background-color: #fff;
-    transition: transform 0.3s ease-in-out;
-}
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        border: 1px solid #ddd;
+        /* Border for visual separation */
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+    }
 
-.package-item:hover {
-    transform: translateY(-10px); /* Adds a subtle hover effect */
-}
+    .package-item:hover {
+        transform: translateY(-10px);
+        /* Adds a subtle hover effect */
+    }
 
-.package-item img {
-    height: 200px; /* Adjust height as needed */
-    width: 100%;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
+    .package-item img {
+        height: 200px;
+        /* Adjust height as needed */
+        width: 100%;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
 
-.package-item .text-center {
-    padding: 15px;
-    flex-grow: 1;
-}
+    .package-item .text-center {
+        padding: 15px;
+        flex-grow: 1;
+    }
 
-.package-item .btn {
-    border-radius: 30px;
-}
+    .package-item .btn {
+        border-radius: 30px;
+    }
 
-.package-item .border-bottom {
-    margin-top: 15px;
-}
-
+    .package-item .border-bottom {
+        margin-top: 15px;
+    }
 </style>
 
 <body>
@@ -103,9 +105,15 @@
                 <h6 class="section-title bg-white text-center text-primary px-3">Consultation Pack</h6>
                 <h1 class="mb-5">Awesome Packages</h1>
             </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <input type="text" id="title" name="title" placeholder="Search by title" class="form-control">
+                </div>
+            </div>
+            
             <div class="row g-4 justify-content-center">
                 @foreach ($consultations as $consultation)
-
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="package-item h-100 d-flex flex-column">
                             <div class="overflow-hidden">
@@ -206,6 +214,18 @@
 
     <!-- jQuery AJAX Script -->
     <script>
+        $(document).ready(function() {
+            $('#title').on('change', function() {
+                var title = $('#title').val();
+
+                // Construct the URL with query parameters for filtering
+                var url = '{{ route('consultation') }}' + '?title=' + encodeURIComponent(title);
+
+                // Redirect to the constructed URL, which will reload the page with the filters applied
+                window.location.href = url;
+            });
+        });
+
         $(document).ready(function() {
             $('form').on('submit', function(e) {
                 e.preventDefault();
