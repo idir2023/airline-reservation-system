@@ -3,6 +3,45 @@
 
 @include('client.layout.head')
 
+<style>
+    .package-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    border: 1px solid #ddd; /* Border for visual separation */
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.package-item:hover {
+    transform: translateY(-10px); /* Adds a subtle hover effect */
+}
+
+.package-item img {
+    height: 200px; /* Adjust height as needed */
+    width: 100%;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.package-item .text-center {
+    padding: 15px;
+    flex-grow: 1;
+}
+
+.package-item .btn {
+    border-radius: 30px;
+}
+
+.package-item .border-bottom {
+    margin-top: 15px;
+}
+
+</style>
+
 <body>
 
     <!-- Success Modal Start -->
@@ -66,8 +105,9 @@
             </div>
             <div class="row g-4 justify-content-center">
                 @foreach ($consultations as $consultation)
+
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-                        <div class="package-item">
+                        <div class="package-item h-100 d-flex flex-column">
                             <div class="overflow-hidden">
                                 <img class="img-fluid" src="{{ Storage::disk('public')->url($consultation->image) }}"
                                     alt="">
@@ -77,78 +117,77 @@
                                     <i class="fa text-primary me-2"></i>{{ $consultation->title }}
                                 </small>
                             </div>
-                            <div class="text-center p-4">
+                            <div class="text-center p-4 flex-grow-1">
                                 <p>{{ $consultation->description }}</p>
-                                <div class="d-flex justify-content-center mb-2">
-                                    <a type="button" data-bs-toggle="modal"
-                                        data-bs-target="#consultationModal{{ $consultation->id }}">
-                                        <span class="btn btn-sm btn-primary px-3 border-end"
-                                            style="border-radius: 30px 0 0 30px;">Apply</span>
-                                        <span class="btn btn-sm btn-primary px-3"
-                                            style="border-radius: 0 30px 30px 0;">Now</span>
-                                    </a>
-                                </div>
                             </div>
-
-                            <!-- Modal Start -->
-                            <div class="modal fade" id="consultationModal{{ $consultation->id }}" tabindex="-1"
-                                aria-labelledby="consultationModalLabel{{ $consultation->id }}" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="consultationModalLabel{{ $consultation->id }}">
-                                                {{ $consultation->title }}</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form id="consultationForm{{ $consultation->id }}" method="POST"
-                                                action="{{ route('save_consultation_formulaire') }}">
-                                                @csrf
-                                                <input type="hidden" name="consultation_id"
-                                                    value="{{ $consultation->id }}">
-
-                                                <!-- Nom -->
-                                                <div class="mb-3">
-                                                    <label for="nom" class="form-label">Nom</label>
-                                                    <input type="text" class="form-control" id="nom"
-                                                        name="nom" placeholder="Enter Last Name">
-                                                </div>
-
-                                                <!-- Prenom -->
-                                                <div class="mb-3">
-                                                    <label for="prenom" class="form-label">Prenom</label>
-                                                    <input type="text" class="form-control" id="prenom"
-                                                        name="prenom" placeholder="Enter First Name">
-                                                </div>
-
-                                                <!-- Description -->
-                                                <div class="mb-3">
-                                                    <label for="description" class="form-label">Description</label>
-                                                    <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Description"></textarea>
-                                                </div>
-
-                                                <!-- Numéro Téléphone -->
-                                                <div class="mb-3">
-                                                    <label for="telephone" class="form-label">Numéro Téléphone</label>
-                                                    <input type="text" class="form-control" id="telephone"
-                                                        name="numerTele" placeholder="Enter Phone Number">
-                                                </div>
-
-                                                <!-- Submit Button -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="d-flex justify-content-center mb-2 mt-auto">
+                                <a type="button" data-bs-toggle="modal"
+                                    data-bs-target="#consultationModal{{ $consultation->id }}">
+                                    <span class="btn btn-sm btn-primary px-3 border-end"
+                                        style="border-radius: 30px 0 0 30px;">Apply</span>
+                                    <span class="btn btn-sm btn-primary px-3"
+                                        style="border-radius: 0 30px 30px 0;">Now</span>
+                                </a>
                             </div>
-                            <!-- Modal End -->
                         </div>
                     </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="consultationModal{{ $consultation->id }}" tabindex="-1"
+                        aria-labelledby="consultationModalLabel{{ $consultation->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="consultationModalLabel{{ $consultation->id }}">
+                                        {{ $consultation->title }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="consultationForm{{ $consultation->id }}" method="POST"
+                                        action="{{ route('save_consultation_formulaire') }}">
+                                        @csrf
+                                        <input type="hidden" name="consultation_id" value="{{ $consultation->id }}">
+
+                                        <!-- Nom -->
+                                        <div class="mb-3">
+                                            <label for="nom" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom"
+                                                placeholder="Enter Last Name">
+                                        </div>
+
+                                        <!-- Prenom -->
+                                        <div class="mb-3">
+                                            <label for="prenom" class="form-label">Prenom</label>
+                                            <input type="text" class="form-control" id="prenom" name="prenom"
+                                                placeholder="Enter First Name">
+                                        </div>
+
+                                        <!-- Description -->
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Description"></textarea>
+                                        </div>
+
+                                        <!-- Numéro Téléphone -->
+                                        <div class="mb-3">
+                                            <label for="telephone" class="form-label">Numéro Téléphone</label>
+                                            <input type="text" class="form-control" id="telephone"
+                                                name="numerTele" placeholder="Enter Phone Number">
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
                 @endforeach
             </div>
         </div>

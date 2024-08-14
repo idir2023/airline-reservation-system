@@ -38,12 +38,30 @@ class HomeController extends Controller
         return view('admin.index');
     }
     // 
-    public function getvisa()
+    public function getvisa(Request $request)
     {
-        $visas = Visa::all(); // Récupère toutes les informations sur les visas depuis la base de données
-        return view('client.visas', compact('visas'));
-    }
+        // Start with all visas
+        $query = Visa::query();
     
+        // Filter by motif if provided
+        if ($request->has('motif') && !empty($request->motif)) {
+            $query->where('motif', $request->motif);
+        }
+    
+        // Filter by lieu if provided
+        if ($request->has('lieu') && !empty($request->lieu)) {
+            $query->where('lieu', $request->lieu);
+        }
+    
+        // Execute the query and get the results
+        $visas = $query->get();
+    
+        // Get all possible motifs and lieux for the filter options
+        $getvisas = Visa::select('motif', 'lieu')->distinct()->get();
+    
+        // Return the view with the filtered visas and the full list of motifs and lieux
+        return view('client.visas', compact('visas', 'getvisas'));
+    }    
 
      public function getactualite()
     {
