@@ -69,6 +69,15 @@
                             </ol>
                         </nav>
                     </div>
+
+                    <div class="position-relative w-75 mx-auto animated slideInDown">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" id="title" name="title"
+                            placeholder="Search by title">
+                        <button type="button"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: 7px;">Search</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -252,6 +261,18 @@
         
            <!-- jQuery AJAX Script -->
            <script>
+                $(document).ready(function() {
+            $('#title').on('change', function() {
+                var title = $('#title').val();
+
+                // Construct the URL with query parameters for filtering
+                var url = '{{ route('assuarance') }}' + '?title=' + encodeURIComponent(title);
+
+                // Redirect to the constructed URL, which will reload the page with the filters applied
+                window.location.href = url;
+            });
+        });
+
             $(document).ready(function() {
                 $('form').on('submit', function(e) {
                     e.preventDefault();

@@ -92,6 +92,15 @@
                             </ol>
                         </nav>
                     </div>
+
+                    <div class="position-relative w-75 mx-auto animated slideInDown">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" id="title" name="title"
+                            placeholder="Search by title">
+                        <button type="button"
+                            class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
+                            style="margin-top: 7px;">Search</button>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -104,12 +113,6 @@
             <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                 <h6 class="section-title bg-white text-center text-primary px-3">Consultation Pack</h6>
                 <h1 class="mb-5">Awesome Packages</h1>
-            </div>
-
-            <div class="row mb-4">
-                <div class="col-md-6">
-                    <input type="text" id="title" name="title" placeholder="Search by title" class="form-control">
-                </div>
             </div>
             
             <div class="row g-4 justify-content-center">

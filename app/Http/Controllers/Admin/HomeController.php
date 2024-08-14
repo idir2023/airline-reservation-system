@@ -82,10 +82,16 @@ class HomeController extends Controller
         return view('client.consultation', compact('consultations'));
     }
     
-    public function getassuarance()
+    public function getassuarance(Request $request)
     {
-        $assurances = Assurance::all(); // Récupère toutes les assurances depuis la base de données
+        $query = Assurance::query(); // Récupère toutes les assurances depuis la base de données
+        if ($request->has('title') && !empty($request->title)) {
+            $query->where('title', 'like', '%' . $request->title . '%');
+        }
+        $assurances = $query->get();
+
         return view('client.assuarance', compact('assurances'));
+        
     }
     
 
