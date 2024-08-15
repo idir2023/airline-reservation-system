@@ -10,9 +10,9 @@
     <a href="{{ route('assuarance') }}"
         class="nav-item nav-link {{ request()->routeIs('assuarance') ? 'active' : '' }}">Assurances</a>
     <a href="{{ route('contact') }}"
-        class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact Us</a>
+        class="nav-item nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contactez-Nous</a>
     <a href="{{ route('reviews') }}"
-        class="nav-item nav-link {{ request()->routeIs('reviews') ? 'active' : '' }}">Reviews </a>
+        class="nav-item nav-link {{ request()->routeIs('reviews') ? 'active' : '' }}">Avis </a>
 </div>
 @if(Auth::check())
     <!-- Utilisateur connecté, afficher le bouton de déconnexion -->
