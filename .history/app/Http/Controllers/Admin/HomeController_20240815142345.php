@@ -26,40 +26,31 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function index(Request $request)
-    // {
-    //     if (view()->exists('template.' . $request->path())) {
-    //         return view('template.' . $request->path());
-    //     }
-    //     return abort(404);
-    // }
-    public function index()
+    public function index(Request $request)
     {
-        // Récupère toutes les données nécessaires
-        $actualites = Actualite::all();
-        $reviews = Review::all();
-        $lieuDepotOptions = LieuDepot::all();
-        $visas = Visa::all();
-        $consultations = Consultation::all();
-        $assurances = Assurance::all();
-
-        // Retourne la vue 'admin.index' avec les données
-        return view('client.index', [
-            'actualites' => $actualites,
-            'reviews' => $reviews,
-            'lieuDepotOptions' => $lieuDepotOptions,
-            'visas' => $visas,
-            'consultations' => $consultations,
-            'assurances'=>$assurances
-        ]);
+        if (view()->exists('template.' . $request->path())) {
+            return view('template.' . $request->path());
+        }
+        return abort(404);
     }
 
     public function root()
     {   
-        return view('admin.index');
+        $actualites = Actualite::all(); 
+        $reviews = Review::all(); 
+        $lieuDepotOptions = LieuDepot::all();
+        $visas = Visa::all(); // Assuming you want to fetch all visas
+        $consultations = Consultation::all(); // Assuming you want to fetch all consultations
+    
+        return view('home', [
+            'actualites' => $actualites,
+            'reviews' => $reviews,
+            'lieuDepotOptions' => $lieuDepotOptions,
+            'visas' => $visas,
+            'consultations' => $consultations
+        ]);
     }
-    // 
-   
+    
     // 
     public function getvisa(Request $request)
     {

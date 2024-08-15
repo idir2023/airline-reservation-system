@@ -49,8 +49,7 @@ class HomeController extends Controller
             'reviews' => $reviews,
             'lieuDepotOptions' => $lieuDepotOptions,
             'visas' => $visas,
-            'consultations' => $consultations,
-            'assurances'=>$assurances
+            'consultations' => $consultations
         ]);
     }
 

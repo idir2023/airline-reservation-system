@@ -39,7 +39,7 @@ class HomeController extends Controller
         $actualites = Actualite::all();
         $reviews = Review::all();
         $lieuDepotOptions = LieuDepot::all();
-        $visas = Visa::all();
+        $getvisas = Visa::all();
         $consultations = Consultation::all();
         $assurances = Assurance::all();
 

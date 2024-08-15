@@ -70,7 +70,7 @@ Route::group(["prefix" => 'dashboard'], function () {
 
 // client 
 Route::view('/', 'client.index');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/visa', [HomeController::class, 'getvisa'])->name('visa');
 Route::get('/actualite', [HomeController::class, 'getactualite'])->name('actualite');

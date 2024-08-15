@@ -41,7 +41,7 @@ class HomeController extends Controller
         $lieuDepotOptions = LieuDepot::all();
         $visas = Visa::all();
         $consultations = Consultation::all();
-        $assurances = Assurance::all();
+        $query = Assurance::query();
 
         // Retourne la vue 'admin.index' avec les données
         return view('client.index', [
@@ -49,8 +49,7 @@ class HomeController extends Controller
             'reviews' => $reviews,
             'lieuDepotOptions' => $lieuDepotOptions,
             'visas' => $visas,
-            'consultations' => $consultations,
-            'assurances'=>$assurances
+            'consultations' => $consultations
         ]);
     }
 

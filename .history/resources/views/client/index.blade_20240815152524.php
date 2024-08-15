@@ -29,7 +29,7 @@
                             visas facilités et billets adaptés à vos besoins</p>
                         <div class="position-relative w-75 mx-auto animated slideInDown">
                             <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text"
-                                placeholder="Eg: Etude">
+                                placeholder="Eg: Visa Etude">
                             <button type="button"
                                 class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2"
                                 style="margin-top: 7px;">Search</button>

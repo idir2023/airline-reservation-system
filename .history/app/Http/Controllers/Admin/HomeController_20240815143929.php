@@ -50,7 +50,7 @@ class HomeController extends Controller
             'lieuDepotOptions' => $lieuDepotOptions,
             'visas' => $visas,
             'consultations' => $consultations,
-            'assurances'=>$assurances
+            'assurances'=>
         ]);
     }
 
