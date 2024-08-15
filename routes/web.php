@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\{
     ActualiteController,
     HomeController,
-    CustomerController,
     ProfileController,
     VisaController,
     AssuranceController,
@@ -45,11 +44,11 @@ Route::group(["prefix" => 'dashboard'], function () {
             Route::resource("consultations", ConsultationController::class);
 
             //Consultation-Formulaire
-            Route::resource("consultation-formulaire",ConsultationFormulaireController::class);
+            Route::resource("consultation-formulaire", ConsultationFormulaireController::class);
 
             //Assurance-Formulaire
-            Route::resource("assurance-formulaire",AssuranceFormulaireController::class);
-            
+            Route::resource("assurance-formulaire", AssuranceFormulaireController::class);
+
             // CONTACT us
             Route::resource("contact", ContactController::class);
 
@@ -57,7 +56,7 @@ Route::group(["prefix" => 'dashboard'], function () {
             Route::resource("reviews", ReviewController::class);
             // routes/web.php
             Route::resource('lieu_depots', LieuDepotController::class);
-Route::resource('reviews', ReviewController::class);
+            Route::resource('reviews', ReviewController::class);
 
             // // Route pour afficher le formulaire de création d'un lieu de dépôt
             // Route::get('lieu_depots/create', [LieuDepotController::class, 'create'])->name('lieu_depots.create');
@@ -65,10 +64,6 @@ Route::resource('reviews', ReviewController::class);
             // // Route pour enregistrer un nouveau lieu de dépôt
             // Route::post('lieu_depots/store', [LieuDepotController::class, 'store'])->name('lieu_depots.store');
 
-
-            //customers
-            Route::get("customers", [CustomerController::class, "index"])->name('customers.index');
-            Route::get("customers/{user}", [CustomerController::class, "show"])->name('customers.show');
         });
     });
 });

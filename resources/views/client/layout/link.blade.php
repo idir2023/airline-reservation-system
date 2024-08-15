@@ -24,5 +24,4 @@
 @else
     <!-- Utilisateur non connecté, afficher les liens de connexion et d'inscription -->
     <a href="{{ route('login') }}" class="nav-item nav-link btn btn-outline-primary me-2">Login</a>
-    <a href="{{ route('register') }}" class="nav-item nav-link btn btn-primary text-white">Sign Up</a>
 @endif
