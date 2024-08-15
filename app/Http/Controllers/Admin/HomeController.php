@@ -94,7 +94,6 @@ class HomeController extends Controller
         return view('client.assuarance', compact('assurances'));
     }
 
-
     public function getcontact()
     {
         return view('client.contact');
@@ -102,14 +101,18 @@ class HomeController extends Controller
 
     public function getreviews(Request $request)
     {
-        $lieuDepotOptions = LieuDepot::all(); // Récupère toutes les critiques depuis la base de données
-        $query = Review::query(); // Récupère toutes les assurances depuis la base de données
-        if ($request->has('lieu_depot') && !empty($request->lieu_depot)) {
-            $query->where('lieu_depot_id', 'like', '%' . $request->lieu_depot . '%');
+        $lieuDepotOptions = LieuDepot::all(); // Retrieve all locations from the database
+        $query = Review::query(); // Start building the query for reviews
+
+        // Check if a specific 'lieu_depot' is selected and not empty
+        if ($request->filled('lieu_depot')) {
+            $query->where('lieu_depot_id', $request->lieu_depot);
         }
-        $reviews = $query->get();
+
+        $reviews = $query->get(); // Get the reviews based on the query
         return view('client.reviews', compact('reviews', 'lieuDepotOptions'));
     }
+
 
 
     public function save_consultation_formulaire(Request $request)

@@ -79,8 +79,6 @@ Route::get('/reviews', [HomeController::class, 'getreviews'])->name('reviews');
 // routes/web.php
 Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
-
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 

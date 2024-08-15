@@ -54,13 +54,13 @@
                         <option value="">Tous les Lieux</option>
                         @foreach ($lieuDepotOptions as $lieuDepot)
                             <option value="{{ $lieuDepot->id }}"
-                                {{ request('lieu_depot') == $lieuDepot->name ? 'selected' : '' }}>
+                                {{ request('lieu_depot') == $lieuDepot->id ? 'selected' : '' }}>
                                 {{ $lieuDepot->name }}
                             </option>
                         @endforeach
                     </select>
                 </div>
-            </div>
+            </div>            
 
             <div class="table-responsive">
                 <table class="table table-bordered">

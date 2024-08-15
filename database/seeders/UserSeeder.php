@@ -15,8 +15,6 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $faker = \Faker\Factory::create();
-
         //admin 
         User::firstOrCreate(
             [
@@ -30,20 +28,5 @@ class UserSeeder extends Seeder
             ]
         );
 
-        //generate customer users
-        foreach (range(1, 50) as $key => $value) {
-            User::firstOrCreate(
-                [
-                    "email" => $faker->email(),
-                    "phone" => $faker->phoneNumber(),
-                ],
-                [
-                    "is_admin" => 0,
-                    "name" => $faker->name(),
-                    "password" => bcrypt("password"),
-                    "address" => $faker->address(),
-                ]
-            );
-        }
     }
 }
