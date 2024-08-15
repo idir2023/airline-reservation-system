@@ -19,8 +19,8 @@
                 <div class="row">
                   <div class="col-7">
                     <div class="text-primary p-4">
-                      <h5 class="text-primary">Welcome Arfak !</h5>
-                     
+                      <h5 class="text-primary">Welcome A !</h5>
+                      <p>Sign in to continue to {{ config('app.name') }}.</p>
                     </div>
                   </div>
                   <div class="col-5 align-self-end">
@@ -93,11 +93,24 @@
                         In</button>
                     </div>
                 </form>
+                <button class="btn btn-light btn-sm waves-effect waves-light mt-2" id="radnomeCustomer">Log
+                  In With Randome Customer</button>
                 </div>
 
               </div>
             </div>
-          
+            <div class="mt-5 text-center">
+              <div>
+                   <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
+                                        Signup now </a> </p>
+                <p>©
+                  <script>
+                    document.write(new Date().getFullYear())
+                  </script> {{ config('app.name') }}. Crafted with <i class="mdi mdi-heart text-danger"></i>
+                </p>
+                </p>
+              </div>
+            </div>
 
           </div>
         </div>

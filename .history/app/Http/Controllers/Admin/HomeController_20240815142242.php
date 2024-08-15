@@ -26,85 +26,67 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    // public function index(Request $request)
-    // {
-    //     if (view()->exists('template.' . $request->path())) {
-    //         return view('template.' . $request->path());
-    //     }
-    //     return abort(404);
-    // }
-    public function index()
+    public function index(Request $request)
     {
-        // Récupère toutes les données nécessaires
-        $actualites = Actualite::all();
-        $reviews = Review::all();
-        $lieuDepotOptions = LieuDepot::all();
-        $visas = Visa::all();
-        $consultations = Consultation::all();
-        $assurances = Assurance::all();
-
-        // Retourne la vue 'admin.index' avec les données
-        return view('client.index', [
-            'actualites' => $actualites,
-            'reviews' => $reviews,
-            'lieuDepotOptions' => $lieuDepotOptions,
-            'visas' => $visas,
-            'consultations' => $consultations,
-            'assurances'=>$assurances
-        ]);
+        if (view()->exists('template.' . $request->path())) {
+            return view('template.' . $request->path());
+        }
+        return abort(404);
     }
 
     public function root()
     {   
+        $actualites = Actualite::all(); 
+        $reviews = Review::all(); 
+        $lieuDepotOptions = LieuDepot::all();
+        $query = Visa::query();
         return view('admin.index');
     }
-    // 
-   
     // 
     public function getvisa(Request $request)
     {
         // Start with all visas
         $query = Visa::query();
-
+    
         // Filter by motif if provided
         if ($request->has('motif') && !empty($request->motif)) {
             $query->where('motif', $request->motif);
         }
-
+    
         // Filter by lieu if provided
         if ($request->has('lieu') && !empty($request->lieu)) {
             $query->where('lieu', $request->lieu);
         }
-
+    
         // Execute the query and get the results
         $visas = $query->get();
-
+    
         // Get all possible motifs and lieux for the filter options
         $getvisas = Visa::select('motif', 'lieu')->distinct()->get();
-
+    
         // Return the view with the filtered visas and the full list of motifs and lieux
         return view('client.visas', compact('visas', 'getvisas'));
-    }
+    }    
 
-    public function getactualite()
+     public function getactualite()
     {
-        $actualites = Actualite::all(); // Récupère toutes les actualités depuis la base de données
-        return view('client.actualite', compact('actualites'));
+            $actualites = Actualite::all(); // Récupère toutes les actualités depuis la base de données
+            return view('client.actualite', compact('actualites'));
     }
 
     public function getconsultation(Request $request)
     {
         $query = Consultation::query();
-
+    
         if ($request->has('title') && !empty($request->title)) {
             $query->where('title', 'like', '%' . $request->title . '%');
         }
-
+    
         $consultations = $query->get();
-
+    
         return view('client.consultation', compact('consultations'));
     }
-
+    
     public function getassuarance(Request $request)
     {
         $query = Assurance::query(); // Récupère toutes les assurances depuis la base de données
@@ -114,29 +96,23 @@ class HomeController extends Controller
         $assurances = $query->get();
 
         return view('client.assuarance', compact('assurances'));
+        
     }
+    
 
     public function getcontact()
     {
         return view('client.contact');
     }
+    public function getreviews()
+{
+    $reviews = Review::all(); 
+    $lieuDepotOptions = LieuDepot::all();// Récupère toutes les critiques depuis la base de données
+    return view('client.reviews', compact('reviews','lieuDepotOptions'));
 
-    public function getreviews(Request $request)
-    {
-        $lieuDepotOptions = LieuDepot::all(); // Retrieve all locations from the database
-        $query = Review::query(); // Start building the query for reviews
+}
 
-        // Check if a specific 'lieu_depot' is selected and not empty
-        if ($request->filled('lieu_depot')) {
-            $query->where('lieu_depot_id', $request->lieu_depot);
-        }
-
-        $reviews = $query->get(); // Get the reviews based on the query
-        return view('client.reviews', compact('reviews', 'lieuDepotOptions'));
-    }
-
-
-
+    
     public function save_consultation_formulaire(Request $request)
     {
         // Validate the request data
@@ -147,7 +123,7 @@ class HomeController extends Controller
             'description' => 'nullable|string',
             'numerTele' => 'required|string|max:20',
         ]);
-
+    
         // Store the data in the database
         ConsultationFormulaire::create([
             'consultation_id' => $request->consultation_id,
@@ -156,7 +132,7 @@ class HomeController extends Controller
             'description' => $request->description,
             'numerTele' => $request->numerTele,
         ]);
-
+    
         // Return a JSON response
         return response()->json([
             'success' =>
@@ -174,16 +150,16 @@ class HomeController extends Controller
             'description' => 'nullable|string',
             'numerTele' => 'required|string|max:20',
         ]);
-
+    
         // Store the data in the database
         AssuranceFormulaire::create($validated);
-
+        
         // Return a JSON response
         return response()->json([
             'success' => 'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.',
         ]);
     }
-
+    
     // 
 
     public function storeTempFile(Request $request)

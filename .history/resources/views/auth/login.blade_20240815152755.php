@@ -93,11 +93,24 @@
                         In</button>
                     </div>
                 </form>
+                <button class="btn btn-light btn-sm waves-effect waves-light mt-2" id="radnomeCustomer">Log
+                  In With Randome Customer</button>
                 </div>
 
               </div>
             </div>
-          
+            <div class="mt-5 text-center">
+              <div>
+                   <p>Don't have an account ? <a href="{{ route('register') }}" class="fw-medium text-primary">
+                                        Signup now </a> </p>
+                <p>©
+                  <script>
+                    document.write(new Date().getFullYear())
+                  </script> {{ config('app.name') }}. Crafted with <i class="mdi mdi-heart text-danger"></i>
+                </p>
+                </p>
+              </div>
+            </div>
 
           </div>
         </div>

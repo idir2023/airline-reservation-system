@@ -70,7 +70,7 @@ Route::group(["prefix" => 'dashboard'], function () {
 
 // client 
 Route::view('/', 'client.index');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/visa', [HomeController::class, 'getvisa'])->name('visa');
 Route::get('/actualite', [HomeController::class, 'getactualite'])->name('actualite');
@@ -81,6 +81,8 @@ Route::get('/reviews', [HomeController::class, 'getreviews'])->name('reviews');
 // routes/web.php
 Route::get('/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
 Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
 
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
