@@ -65,46 +65,46 @@ class HomeController extends Controller
     {
         // Start with all visas
         $query = Visa::query();
-    
+
         // Filter by motif if provided
         if ($request->has('motif') && !empty($request->motif)) {
             $query->where('motif', $request->motif);
         }
-    
+
         // Filter by lieu if provided
         if ($request->has('lieu') && !empty($request->lieu)) {
             $query->where('lieu', $request->lieu);
         }
-    
+
         // Execute the query and get the results
         $visas = $query->get();
-    
+
         // Get all possible motifs and lieux for the filter options
         $getvisas = Visa::select('motif', 'lieu')->distinct()->get();
-    
+
         // Return the view with the filtered visas and the full list of motifs and lieux
         return view('client.visas', compact('visas', 'getvisas'));
-    }    
+    }
 
-     public function getactualite()
+    public function getactualite()
     {
-            $actualites = Actualite::all(); // Récupère toutes les actualités depuis la base de données
-            return view('client.actualite', compact('actualites'));
+        $actualites = Actualite::all(); // Récupère toutes les actualités depuis la base de données
+        return view('client.actualite', compact('actualites'));
     }
 
     public function getconsultation(Request $request)
     {
         $query = Consultation::query();
-    
+
         if ($request->has('title') && !empty($request->title)) {
             $query->where('title', 'like', '%' . $request->title . '%');
         }
-    
+
         $consultations = $query->get();
-    
+
         return view('client.consultation', compact('consultations'));
     }
-    
+
     public function getassuarance(Request $request)
     {
         $query = Assurance::query(); // Récupère toutes les assurances depuis la base de données
@@ -114,23 +114,26 @@ class HomeController extends Controller
         $assurances = $query->get();
 
         return view('client.assuarance', compact('assurances'));
-        
     }
-    
+
 
     public function getcontact()
     {
         return view('client.contact');
     }
-    public function getreviews()
-{
-    $reviews = Review::all(); 
-    $lieuDepotOptions = LieuDepot::all();// Récupère toutes les critiques depuis la base de données
-    return view('client.reviews', compact('reviews','lieuDepotOptions'));
 
-}
+    public function getreviews(Request $request)
+    {
+        $lieuDepotOptions = LieuDepot::all(); // Récupère toutes les critiques depuis la base de données
+        $query = Review::query(); // Récupère toutes les assurances depuis la base de données
+        if ($request->has('lieu_depot') && !empty($request->lieu_depot)) {
+            $query->where('lieu_depot_id', 'like', '%' . $request->lieu_depot . '%');
+        }
+        $reviews = $query->get();
+        return view('client.reviews', compact('reviews', 'lieuDepotOptions'));
+    }
 
-    
+
     public function save_consultation_formulaire(Request $request)
     {
         // Validate the request data
@@ -141,7 +144,7 @@ class HomeController extends Controller
             'description' => 'nullable|string',
             'numerTele' => 'required|string|max:20',
         ]);
-    
+
         // Store the data in the database
         ConsultationFormulaire::create([
             'consultation_id' => $request->consultation_id,
@@ -150,7 +153,7 @@ class HomeController extends Controller
             'description' => $request->description,
             'numerTele' => $request->numerTele,
         ]);
-    
+
         // Return a JSON response
         return response()->json([
             'success' =>
@@ -168,16 +171,16 @@ class HomeController extends Controller
             'description' => 'nullable|string',
             'numerTele' => 'required|string|max:20',
         ]);
-    
+
         // Store the data in the database
         AssuranceFormulaire::create($validated);
-        
+
         // Return a JSON response
         return response()->json([
             'success' => 'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.',
         ]);
     }
-    
+
     // 
 
     public function storeTempFile(Request $request)
