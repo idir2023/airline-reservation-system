@@ -56,8 +56,13 @@ class HomeController extends Controller
 
     public function root()
     {   
-        return view('admin.index');
-    }
+        $count_visa = Visa::count();    
+        $count_assurance = Assurance::count();    
+        $count_consultation = Consultation::count();    
+        $count_review = Review::count();    
+    
+        return view('admin.index', compact('count_visa', 'count_assurance', 'count_consultation', 'count_review'));
+    }    
     // 
    
     // 
@@ -185,6 +190,7 @@ class HomeController extends Controller
     }
 
     // 
+   
 
     public function storeTempFile(Request $request)
     {

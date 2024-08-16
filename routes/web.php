@@ -64,6 +64,7 @@ Route::group(["prefix" => 'dashboard'], function () {
             // // Route pour enregistrer un nouveau lieu de dépôt
             // Route::post('lieu_depots/store', [LieuDepotController::class, 'store'])->name('lieu_depots.store');
 
+
         });
     });
 });

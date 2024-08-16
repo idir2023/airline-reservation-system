@@ -27,13 +27,12 @@
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_airline')</p>
-                  <h4 class="mb-0">4</h4>
+                  <p class="text-muted fw-medium">Visas</p>
+                  <h4 class="mb-0">{{$count_visa}}</h4>
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
-                  <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
-                    <span class="avatar-title">
+                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                    <span class="avatar-title rounded-circle bg-primary">
                       <i class='bx bx-globe font-size-24'></i>
                     </span>
                   </div>
@@ -42,15 +41,15 @@
             </div>
           </div>
         </div>
+        
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_plane')</p>
-                  <h4 class="mb-0">4</h4>
+                  <p class="text-muted fw-medium">Assurances</p>
+                  <h4 class="mb-0">{{ $count_assurance }}</h4>
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
@@ -62,14 +61,15 @@
             </div>
           </div>
         </div>
+        
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <div class="flex-grow-1">
-                    <p class="text-muted fw-medium">@lang('translation.dashboard.total_airport')</p>
-                    <h4 class="mb-0"></h4>
+                    <p class="text-muted fw-medium">@lang('Consultation')</p>
+                    <h4 class="mb-0">{{$count_consultation}}</h4>
                   </div>
                 </div>
 
@@ -98,8 +98,8 @@
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_flight')</p>
-                  <h4 class="mb-0">5</h4>
+                  <p class="text-muted fw-medium">@lang('Reviews')</p>
+                  <h4 class="mb-0">{{$count_review}}</h4>
                 </div>
 
                 <div class="align-self-center flex-shrink-0">
