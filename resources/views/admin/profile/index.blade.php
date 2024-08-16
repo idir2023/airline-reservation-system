@@ -47,6 +47,7 @@
             <div class="">
               <div class="pt-4">
                 <div class="mt-4">
+                  <a href="{{route('add.user')}}" class="btn btn-outline-success waves-effect waves-light btn-sm">@lang('Add user')</a>
                   <a href="" class="btn btn-outline-primary waves-effect waves-light btn-sm" data-bs-toggle="modal" data-bs-target=".update-profile">@lang('buttons.edit_resource', ['resource' => __('attributes.profile')])</a>
                   <a href="" class="btn btn-outline-warning waves-effect waves-light btn-sm ms-2" data-bs-toggle="modal" data-bs-target=".update-password">@lang('buttons.edit_resource', ['resource' => __('attributes.password')])</a>
                 </div>

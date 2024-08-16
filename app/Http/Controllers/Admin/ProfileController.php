@@ -73,6 +73,11 @@ class ProfileController extends Controller
         }
     }
 
+    public function addUser()
+    {
+        return view('admin.users.create');
+    }
+
     public function updatePassword(Request $request)
     {
         //validation
@@ -100,5 +105,42 @@ class ProfileController extends Controller
         } catch (\Throwable $th) {
             return $this->josnResponse(true, __('api.internal_server_error'), Response::HTTP_INTERNAL_SERVER_ERROR, null, showErrorMessage($e));
         }
+    }
+
+    public function store(Request $request)
+    {
+        // Define validation rules
+        $rules = [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed', // Ensure a matching password_confirmation field
+            'phone' => 'required|string|unique:users,phone|max:15', // 'unique:users,phone' vérifie l'unicité dans la colonne 'phone' de la table 'users'
+        ];
+        $messages = [
+            'email.unique' => 'Cet e-mail existe déjà.',
+            'phone.unique' => 'Ce numéro de téléphone existe déjà.',
+        ];
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Create a new user
+        User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => Hash::make($request->input('password')),
+            'phone' => $request->input('phone'),
+            'is_admin' => true, // Set default admin value
+        ]);
+
+        return redirect()->route('profile')->with([
+            'message' => 'Utilisateur ajouté avec succès !',
+            'icon' => 'success',
+        ]);
     }
 }
