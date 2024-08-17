@@ -31,6 +31,13 @@ Route::group(["prefix" => 'dashboard'], function () {
         Route::group(['middleware' => 'admin'], function () {
             Route::get('/', [HomeController::class, 'root'])->name('root');
 
+            //add user 
+
+            Route::get('/add-user', [ProfileController::class, 'addUser'])->name('add.user');
+            Route::post('/store-user', [ProfileController::class, 'store'])->name('users.store');
+
+
+
             //visas
             Route::resource("visas", VisaController::class);
 

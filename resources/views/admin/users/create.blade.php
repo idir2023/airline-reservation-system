@@ -9,9 +9,7 @@
     @slot('li_1')
       @lang('translation.user.user')
     @endslot
-    @slot('li_2')
-      {{ route('users.index') }}
-    @endslot
+  
     @slot('title')
       @lang('translation.user.add_user')
     @endslot
@@ -64,7 +62,7 @@
                 <div class="row mb-4">
                   <label for="password" class="col-sm-3 col-form-label">@lang('translation.user.password')</label>
                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" required>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
@@ -75,19 +73,14 @@
                 </div>
 
                 <div class="row mb-4">
-                  <label for="role" class="col-sm-3 col-form-label">@lang('translation.user.role')</label>
+                  <label for="password_confirmation" class="col-sm-3 col-form-label">@lang('translation.user.confirm_password')</label>
                   <div class="col-sm-9">
-                    <select class="form-control select2" id="role" name="role" required>
-                      <option value=""></option>
-                      @foreach ($roles as $role)
-                        <option value="{{ $role }}">{{ $role }}</option>
-                      @endforeach
-                    </select>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
                     <div class="valid-feedback">
                       @lang('validation.good')
                     </div>
                     <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.user.role')])
+                      @lang('validation.required', ['attribute' => __('translation.user.confirm_password')])
                     </div>
                   </div>
                 </div>
@@ -105,33 +98,6 @@
                   </div>
                 </div>
 
-                <div class="row mb-4">
-                  <label for="phone_alt" class="col-sm-3 col-form-label">@lang('translation.user.phone_alt')</label>
-                  <div class="col-sm-9">
-                    <input type="tel" class="form-control" id="phone_alt" name="phone_alt" value="{{ old('phone_alt') }}" >
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.user.phone_alt')])
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row mb-4">
-                  <label for="address" class="col-sm-3 col-form-label">@lang('translation.user.address')</label>
-                  <div class="col-sm-9">
-                    <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}" required>
-                    <div class="valid-feedback">
-                      @lang('validation.good')
-                    </div>
-                    <div class="invalid-feedback">
-                      @lang('validation.required', ['attribute' => __('translation.user.address')])
-                    </div>
-                  </div>
-                </div>
-
                 <div class="row justify-content-end">
                   <div class="col-sm-9">
                     <div>
@@ -142,7 +108,6 @@
               </div>
             </div>
           </form>
-
 
         </div>
       </div>

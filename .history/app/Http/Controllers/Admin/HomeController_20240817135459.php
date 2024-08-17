@@ -70,7 +70,7 @@ class HomeController extends Controller
         return view('admin.index', compact('count_visa', 'count_assurance', 'count_consultation', 'count_review','count_actualite','count_contact','count_formAssurance','count_formConsultation'));
          
     
-      
+        return view('admin.index', compact('count_visa', 'count_assurance', 'count_consultation', 'count_review'));
     }    
     // 
    
