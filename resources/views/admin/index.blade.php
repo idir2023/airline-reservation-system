@@ -7,33 +7,41 @@
 @section('css')
   <!-- Lightbox css -->
   <link href="{{ URL::asset('/assets/libs/magnific-popup/magnific-popup.min.css') }}" rel="stylesheet" type="text/css" />
+  <!-- Chart.js css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.css" />
 @endsection
 
 @section('content')
   @component('components.breadcrumb')
-    @slot('li_1')
-      Dashboards
-    @endslot
-    @slot('title')
-      Dashboard
-    @endslot
+    @slot('li_1') Dashboards @endslot
+    @slot('title') Dashboard @endslot
   @endcomponent
 
+  <!-- Stats Row 1 -->
   <div class="row">
     <div class="col-xl-12">
       <div class="row">
+        <!-- Visas Card -->
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <p class="text-muted fw-medium">Visas</p>
+<<<<<<< HEAD
+                  <h4 class="mb-0">{{ $count_visa }}</h4>
+=======
                   <h4 class="mb-0">{{$count_visa}}</h4>
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
+<<<<<<< HEAD
+                      <i class='bx bxs-world font-size-24'></i> <!-- Changed Icon -->
+=======
                       <i class='bx bx-globe font-size-24'></i>
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                     </span>
                   </div>
                 </div>
@@ -41,7 +49,12 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+
+        <!-- Assurances Card -->
+=======
         
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
@@ -53,7 +66,7 @@
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bxs-paper-plane font-size-24"></i>
+                      <i class="bx bx-shield-alt-2 font-size-24"></i> <!-- Changed Icon -->
                     </span>
                   </div>
                 </div>
@@ -61,22 +74,31 @@
             </div>
           </div>
         </div>
+<<<<<<< HEAD
+
+        <!-- Consultation Card -->
+=======
         
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
+<<<<<<< HEAD
+                  <p class="text-muted fw-medium">@lang('Consultation')</p>
+                  <h4 class="mb-0">{{ $count_consultation }}</h4>
+=======
                   <div class="flex-grow-1">
                     <p class="text-muted fw-medium">@lang('Consultation')</p>
                     <h4 class="mb-0">{{$count_consultation}}</h4>
                   </div>
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-buildings font-size-24"></i>
+                      <i class="bx bx-message-square-detail font-size-24"></i> <!-- Changed Icon -->
                     </span>
                   </div>
                 </div>
@@ -85,27 +107,30 @@
           </div>
         </div>
       </div>
-      <!-- end row -->
     </div>
   </div>
-  <!-- end row -->
 
+  <!-- Stats Row 2 -->
   <div class="row">
     <div class="col-xl-12">
       <div class="row">
+        <!-- Reviews Card -->
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <p class="text-muted fw-medium">@lang('Reviews')</p>
+<<<<<<< HEAD
+                  <h4 class="mb-0">{{ $count_review }}</h4>
+=======
                   <h4 class="mb-0">{{$count_review}}</h4>
+>>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bxs-plane-alt font-size-24"></i>
+                      <i class="bx bxs-comment-detail font-size-24"></i> <!-- Changed Icon -->
                     </span>
                   </div>
                 </div>
@@ -113,19 +138,20 @@
             </div>
           </div>
         </div>
+
+        <!-- Actualite Card -->
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_ticket')</p>
-                  <h4 class="mb-0">5</h4>
+                  <p class="text-muted fw-medium">@lang('Actualite')</p>
+                  <h4 class="mb-0">{{ $count_actualite }}</h4>
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
-                  <div class="mini-stat-icon avatar-sm rounded-circle bg-primary">
-                    <span class="avatar-title">
-                      <i class='bx bx-purchase-tag-alt font-size-24'></i>
+                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                    <span class="avatar-title rounded-circle bg-primary">
+                      <i class="bx bx-news font-size-24"></i> <!-- Changed Icon -->
                     </span>
                   </div>
                 </div>
@@ -133,19 +159,62 @@
             </div>
           </div>
         </div>
+
+        <!-- Contact Card -->
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-                  <p class="text-muted fw-medium">@lang('translation.dashboard.total_customer')</p>
-                  <h4 class="mb-0">8</h4>
+                  <p class="text-muted fw-medium">@lang('Contact')</p>
+                  <h4 class="mb-0">{{ $count_contact }}</h4>
                 </div>
-
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-                      <i class="bx bx-user font-size-24"></i>
+                      <i class="bx bx-phone font-size-24"></i> <!-- Changed Icon -->
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Client Consultation Card -->
+        <div class="col-md-4">
+          <div class="card mini-stats-wid">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <p class="text-muted fw-medium">@lang('ClientConsultation')</p>
+                  <h4 class="mb-0">{{ $count_formConsultation }}</h4>
+                </div>
+                <div class="align-self-center flex-shrink-0">
+                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                    <span class="avatar-title rounded-circle bg-primary">
+                      <i class="bx bx-user-check font-size-24"></i> <!-- Changed Icon -->
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Assurance Form Card -->
+        <div class="col-md-4">
+          <div class="card mini-stats-wid">
+            <div class="card-body">
+              <div class="d-flex">
+                <div class="flex-grow-1">
+                  <p class="text-muted fw-medium">@lang('AssuranceForm')</p>
+                  <h4 class="mb-0">{{ $count_formAssurance }}</h4>
+                </div>
+                <div class="align-self-center flex-shrink-0">
+                  <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
+                    <span class="avatar-title rounded-circle bg-primary">
+                      <i class="bx bx-file font-size-24"></i> <!-- Changed Icon -->
                     </span>
                   </div>
                 </div>
@@ -154,59 +223,65 @@
           </div>
         </div>
       </div>
-      <!-- end row -->
     </div>
   </div>
-  <!-- end row -->
 
-
-
-  {{-- last 10 flights --}}
-  {{-- <div class="row">
-    <div class="col-lg-12">
+  <!-- Charts Section -->
+  <div class="row">
+    <div class="col-xl-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title mb-4">@lang('translation.dashboard.latest_flights')</h4>
-          <div class="table-responsive">
-            <table class="table-nowrap mb-0 table align-middle">
-              <thead class="table-light">
-                <tr>
-                  <th class="align-middle">#</th>
-                  <th class="align-middle">@lang('translation.flight.flight_number')</th>
-                  <th class="align-middle">@lang('translation.flight.airline')</th>
-                  <th class="align-middle">@lang('translation.flight.origin')</th>
-                  <th class="align-middle">@lang('translation.flight.destination')</th>
-                  <th class="align-middle">@lang('translation.flight.departure')</th>
-                  <th class="align-middle">@lang('translation.flight.arrival')</th>
-                  <th class="align-middle">@lang('translation.flight.price')</th>
-                </tr>
-              </thead>
-              <tbody>
-                @forelse ($data['lastFlights'] as $flight)
-                  <tr>
-                    <td><a href="javascript: void(0);" class="text-body fw-bold">#{{ $loop->iteration }}</a> </td>
-                    <td class="text-info fw-bold">{{ ucfirst($flight->flight_number) }}</td>
-                    <td>{{ ucfirst($flight->airline->name) }}</td>
-                    <td><span class="badge badge-pill badge-soft-info font-size-13">{{ ucfirst($flight->origin->name) }}</span></td>
-                    <td><span class="badge badge-pill badge-soft-success font-size-13">{{ ucfirst($flight->destination->name) }}</span></td>
-                    <td>{{ formatDateWithTimezone($flight->departure) }}</td>
-                    <td>{{ formatDateWithTimezone($flight->arrival) }}</td>
-                    <td class="text-primary fw-bold">{{ formatPrice($flight->price) }}</td>
-                  </tr>
-                @empty
-                  <tr>
-                    <td colspan="10" class="text-center">@lang('translation.emptyTable')</td>
-                  </tr>
-                @endforelse
-
-              </tbody>
-            </table>
-          </div>
-          <!-- end table-responsive -->
+          <h4 class="card-title">Dashboard Charts</h4>
+          <canvas id="dashboardChart" style="height: 300px;"></canvas>
         </div>
       </div>
     </div>
-  </div> --}}
-  <!-- end row -->
+  </div>
+
 @endsection
 
+@section('script')
+  <!-- Chart.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script>
+    const ctx = document.getElementById('dashboardChart').getContext('2d');
+    const dashboardChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Visas', 'Assurances', 'Consultations', 'Reviews', 'Actualite', 'Contact', 'ClientConsultation', 'AssuranceForm'],
+        datasets: [{
+          label: 'Count',
+          data: [{{ $count_visa }}, {{ $count_assurance }}, {{ $count_consultation }}, {{ $count_review }}, {{ $count_actualite }}, {{ $count_contact }}, {{ $count_formConsultation }}, {{ $count_formAssurance }}],
+          backgroundColor: [
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)',
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+          ],
+          borderColor: [
+            'rgba(75, 192, 192, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+@endsection

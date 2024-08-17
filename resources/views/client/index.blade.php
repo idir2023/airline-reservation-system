@@ -432,6 +432,46 @@
             });
         });
     </script>
+     <script>
+        $(document).ready(function() {
+    $('#title').on('change', function() {
+        var title = $('#title').val();
+
+        // Construct the URL with query parameters for filtering
+        var url = '{{ route('assuarance') }}' + '?title=' + encodeURIComponent(title);
+
+        // Redirect to the constructed URL, which will reload the page with the filters applied
+        window.location.href = url;
+    });
+});
+
+    $(document).ready(function() {
+        $('form').on('submit', function(e) {
+            e.preventDefault();
+            var form = $(this);
+            $.ajax({
+                url: form.attr('action'),
+                method: 'POST',
+                data: form.serialize(),
+                success: function(response) {
+                    $('#successModal .modal-body').text(response.success || 
+                        'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.');
+                    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                    successModal.show();
+                    form[0].reset(); // Optional: reset form fields
+                    form.closest('.modal').modal('hide'); // Hide the modal
+                },
+                error: function(xhr) {
+                    console.error('Error:', xhr.responseText);
+                    $('#errorModal .modal-body').text('Une erreur est survenue. Veuillez réessayer.');
+                    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    errorModal.show();
+                }
+            });
+        });
+    });
+</script>
+
 
 </body>
 
