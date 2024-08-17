@@ -105,15 +105,25 @@
             <div class="row g-4">
                 @foreach ($visas as $visa)
                     <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="visa-item card border rounded p-4 h-100">
+                        <div class="visa-item card border rounded p-4 h-100 d-flex flex-column">
+                            <!-- Check if the visa has an image -->
                             @if ($visa->image)
                                 <img class="img-fluid mb-3 rounded" src="{{ Storage::disk('public')->url($visa->image) }}" alt="{{ $visa->type_visa }}">
                             @endif
-                            <h5 class="mb-3">{{ $visa->type_visa }}</h5>
-                            <p>{{ $visa->motif }}</p>
-                            <p>{{ $visa->lieu }}</p>
-                            <p>{{ $visa->destination_visa }}</p>
+                            
+                            <!-- Visa Type -->
+                            <h4 class="mb-3">{{ $visa->type_visa }}</h4>
+                            
+                            <!-- Visa Motif -->
+                            <h6>{{ $visa->motif }}</h6>
+                            
+                            <!-- Lieu and Destination -->
+                            <p>De <span class="font-bold">{{ $visa->lieu }}</span> à <span class="font-bold">{{ $visa->destination_visa }}</span></p>
+                            
+                            <!-- Visa Description -->
                             <p>{{ $visa->description }}</p>
+                            
+                            <!-- Check if there is a PDF document available -->
                             @if ($visa->pdf_path)
                                 <a href="{{ Storage::disk('public')->url($visa->pdf_path) }}" class="btn btn-primary mt-auto" target="_blank">
                                     View PDF

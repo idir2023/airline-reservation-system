@@ -5,6 +5,24 @@
 
 <body>
 
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Success message will be inserted here by JavaScript -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Navbar & Hero Start -->
     <div class="container-fluid position-relative p-0">
         <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
@@ -57,16 +75,28 @@
             <div class="row g-4">
                 @foreach ($visas as $visa)
                     <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="visa-item card border rounded p-4 h-100">
+
+                        <div class="visa-item card border rounded p-4 h-100 d-flex flex-column">
+                            <!-- Check if the visa has an image -->
                             @if ($visa->image)
                                 <img class="img-fluid mb-3 rounded"
                                     src="{{ Storage::disk('public')->url($visa->image) }}" alt="{{ $visa->type_visa }}">
                             @endif
-                            <h5 class="mb-3">{{ $visa->type_visa }}</h5>
-                            <p>{{ $visa->motif }}</p>
-                            <p>{{ $visa->lieu }}</p>
-                            <p>{{ $visa->destination_visa }}</p>
+
+                            <!-- Visa Type -->
+                            <h4 class="mb-3">{{ $visa->type_visa }}</h4>
+
+                            <!-- Visa Motif -->
+                            <h6>{{ $visa->motif }}</h6>
+
+                            <!-- Lieu and Destination -->
+                            <p>De <span class="font-bold">{{ $visa->lieu }}</span> à <span
+                                    class="font-bold">{{ $visa->destination_visa }}</span></p>
+
+                            <!-- Visa Description -->
                             <p>{{ $visa->description }}</p>
+
+                            <!-- Check if there is a PDF document available -->
                             @if ($visa->pdf_path)
                                 <a href="{{ Storage::disk('public')->url($visa->pdf_path) }}"
                                     class="btn btn-primary mt-auto" target="_blank">
@@ -74,6 +104,7 @@
                                 </a>
                             @endif
                         </div>
+
                     </div>
                 @endforeach
             </div>
@@ -299,7 +330,6 @@
                         </div>
                     </div>
                     <!-- Modal End -->
-
                 @endforeach
             </div>
         </div>
@@ -382,7 +412,8 @@
                     data: form.serialize(),
                     success: function(response) {
                         $('#successModal .modal-body').text(response.success ||
-                            'Operation completed successfully');
+                            'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.'
+                            );
                         var successModal = new bootstrap.Modal(document.getElementById(
                             'successModal'));
                         successModal.show();
@@ -391,16 +422,15 @@
                     },
                     error: function(xhr) {
                         console.error('Error:', xhr.responseText);
-                        $('#successModal .modal-body').text(
-                            'An error occurred. Please try again.');
-                        var successModal = new bootstrap.Modal(document.getElementById(
-                            'successModal'));
-                        successModal.show();
+                        $('#errorModal .modal-body').text(
+                            'Une erreur est survenue. Veuillez réessayer.');
+                        var errorModal = new bootstrap.Modal(document.getElementById(
+                            'errorModal'));
+                        errorModal.show();
                     }
                 });
             });
         });
-        
     </script>
 
 </body>
