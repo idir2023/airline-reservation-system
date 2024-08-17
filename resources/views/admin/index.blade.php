@@ -28,20 +28,13 @@
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <p class="text-muted fw-medium">Visas</p>
-<<<<<<< HEAD
                   <h4 class="mb-0">{{ $count_visa }}</h4>
-=======
-                  <h4 class="mb-0">{{$count_visa}}</h4>
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
                     <span class="avatar-title rounded-circle bg-primary">
-<<<<<<< HEAD
                       <i class='bx bxs-world font-size-24'></i> <!-- Changed Icon -->
-=======
                       <i class='bx bx-globe font-size-24'></i>
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                     </span>
                   </div>
                 </div>
@@ -49,12 +42,7 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
 
-        <!-- Assurances Card -->
-=======
-        
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
@@ -74,26 +62,14 @@
             </div>
           </div>
         </div>
-<<<<<<< HEAD
 
-        <!-- Consultation Card -->
-=======
-        
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
         <div class="col-md-4">
           <div class="card mini-stats-wid">
             <div class="card-body">
               <div class="d-flex">
                 <div class="flex-grow-1">
-<<<<<<< HEAD
                   <p class="text-muted fw-medium">@lang('Consultation')</p>
                   <h4 class="mb-0">{{ $count_consultation }}</h4>
-=======
-                  <div class="flex-grow-1">
-                    <p class="text-muted fw-medium">@lang('Consultation')</p>
-                    <h4 class="mb-0">{{$count_consultation}}</h4>
-                  </div>
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
@@ -121,11 +97,7 @@
               <div class="d-flex">
                 <div class="flex-grow-1">
                   <p class="text-muted fw-medium">@lang('Reviews')</p>
-<<<<<<< HEAD
-                  <h4 class="mb-0">{{ $count_review }}</h4>
-=======
                   <h4 class="mb-0">{{$count_review}}</h4>
->>>>>>> 249016c7dbc80d921958190a42b299b42f3b55e8
                 </div>
                 <div class="align-self-center flex-shrink-0">
                   <div class="avatar-sm rounded-circle bg-primary mini-stat-icon">
