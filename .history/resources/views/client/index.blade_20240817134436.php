@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+@include('client.layout.head')
+
+<body>
+    
+    <!-- Navbar & Hero Start -->
+    <div class="container-fluid position-relative p-0">
+        <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
+            <a href="" class="navbar-brand p-0">
+                <h3 class="text-primary m-0"><i class="fa fa-map-marker-alt me-3"></i>Arfak Voyage</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                @include('client.layout.link')
+            </div>
+        </nav>
+
+        <div class="container-fluid bg-primary py-5 mb-5 hero-header">
+            <div class="container py-5">
+                <div class="row justify-content-center py-5">
+                    <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
+                        <h1 class="display-3 text-white mb-3 animated slideInDown">Voyagez avec Confiance, Voyagez avec Arfak</h1>
+                        <p class="fs-4 text-white mb-4 animated slideInDown">Découvrez le monde avec nos consultations expertes, visas facilités et billets adaptés à vos besoins</p>
+                        <div class="position-relative w-75 mx-auto animated slideInDown">
+                            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Etude">
+                            <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar & Hero End -->
+
+    <!-- Visa Information Display Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Informations sur les visas</h6>
+                <h1 class="mb-5">Types de visas disponibles</h1>
+            </div>
+
+            <div class="row g-4">
+                @foreach ($visas as $visa)
+                    <div class="col-lg-4 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="visa-item card border rounded p-4 h-100">
+                            @if ($visa->image)
+                                <img class="img-fluid mb-3 rounded" src="{{ Storage::disk('public')->url($visa->image) }}" alt="{{ $visa->type_visa }}">
+                            @endif
+                            <h5 class="mb-3">{{ $visa->type_visa }}</h5>
+                            <p>{{ $visa->motif }}</p>
+                            <p>{{ $visa->lieu }}</p>
+                            <p>{{ $visa->destination_visa }}</p>
+                            <p>{{ $visa->description }}</p>
+                            @if ($visa->pdf_path)
+                                <a href="{{ Storage::disk('public')->url($visa->pdf_path) }}" class="btn btn-primary mt-auto" target="_blank">View PDF</a>
+                            @endif
+                        </div>
+                    </div>
+                @endforeach
+            </div>            
+        </div>
+    </div>
+    <!-- Visa Information Display End -->
+
+    <!-- Actualités Section Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Actualités</h6>
+                <h1 class="mb-5">Nos Dernières Actualités</h1>
+            </div>
+            <div class="row g-4">
+                @foreach($actualites as $actualite)
+                    <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <div class="service-item rounded pt-3">
+                            <img class="img-fluid" src="{{ Storage::disk('public')->url($actualite->image) }}" alt="{{ $actualite->title }}">
+                            <div class="p-4">
+                                <h5>{{ $actualite->title }}</h5>
+                                <p>{{ $actualite->description }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Actualités Section End -->
+
+    <!-- Consultation Packages Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Pack Consultation</h6>
+                <h1 class="mb-5">Formules Exceptionnelles</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                @foreach ($consultations as $consultation)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="package-item h-100 d-flex flex-column">
+                            <div class="overflow-hidden">
+                                <img class="img-fluid" src="{{ Storage::disk('public')->url($consultation->image) }}" alt="">
+                            </div>
+                            <div class="d-flex border-bottom">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa text-primary me-2"></i>{{ $consultation->title }}
+                                </small>
+                            </div>
+                            <div class="text-center p-4 flex-grow-1">
+                                <p>{{ $consultation->description }}</p>
+                            </div>
+                            <div class="d-flex justify-content-center mb-2 mt-auto">
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#consultationModal{{ $consultation->id }}">
+                                    <span class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Appliquer</span>
+                                    <span class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Maintenant</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Modal Start -->
+                    <div class="modal fade" id="consultationModal{{ $consultation->id }}" tabindex="-1" aria-labelledby="consultationModalLabel{{ $consultation->id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="consultationModalLabel{{ $consultation->id }}">
+                                        {{ $consultation->title }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form id="consultationForm{{ $consultation->id }}" method="POST" action="{{ route('save_consultation_formulaire') }}">
+                                        @csrf
+                                        <input type="hidden" name="consultation_id" value="{{ $consultation->id }}">
+                                        <div class="mb-3">
+                                            <label for="nom" class="form-label">Nom</label>
+                                            <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter Last Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="prenom" class="form-label">Prenom</label>
+                                            <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Enter First Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="description" class="form-label">Description</label>
+                                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Description"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="telephone" class="form-label">Numéro Téléphone</label>
+                                            <input type="text" class="form-control" id="telephone" name="numerTele" placeholder="Enter Phone Number">
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal End -->
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Consultation Packages End -->
+
+    <!-- Insurance Section Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Assurance</h6>
+                <h1 class="mb-5">Nos Offres d'Assurance</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                @foreach ($assurances as $assurance)
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                        <div class="package-item h-100 d-flex flex-column">
+                            <div class="overflow-hidden">
+                                <img class="img-fluid" src="{{ Storage::disk('public')->url($assurance->image) }}" alt="">
+                            </div>
+                            <div class="d-flex border-bottom">
+                                <small class="flex-fill text-center border-end py-2">
+                                    <i class="fa text-primary me-2"></i>{{ $assurance->title }}
+                                </small>
+                            </div>
+                            <div class="text-center p-4 flex-grow-1">
+                                <p>{{ $assurance->description }}</p>
+                            </div>
+                            <div class="d-flex justify-content-center mb-2 mt-auto">
+                                <a href="{{ route('save_assurance_formulaire', ['assurance_id' => $assurance->id]) }}">
+                                    <span class="btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Souscrire</span>
+                                    <span class="btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Maintenant</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Insurance Section End -->
+
+    <!-- Footer Start -->
+    @include('client.layout.footer')
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top pt-2"><i class="fa fa-angle-double-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    @include('client.layout.script')
+
+</body>
+
+</html>
