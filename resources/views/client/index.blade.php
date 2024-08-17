@@ -253,18 +253,17 @@
             <div class="row gy-5 gx-4 justify-content-center">
                 @foreach ($assurances as $assurance)
                     <div class="col-lg-4 col-sm-6 text-center pt-4 wow fadeInUp"
-                        data-wow-delay="0.{{ $loop->index * 0.2 }}s">
+                        data-wow-delay="0.{{ $loop->index * 2 }}s">
                         <div class="position-relative border border-primary pt-5 pb-4 px-4">
                             <img class="img-fluid" src="{{ Storage::disk('public')->url($assurance->image) }}"
-                                alt="{{ $assurance->title }}" class="img-fluid mb-3 rounded-circle"
-                                style="width: 100px; height: 100px;">
+                                alt="{{ $assurance->title }}" style="width: 100px; height: 100px;">
                             <h5 class="mt-4">{{ $assurance->title }}</h5>
                             <hr class="w-25 mx-auto bg-primary mb-1">
                             <hr class="w-50 mx-auto bg-primary mt-0">
                             <p class="mb-0">{{ $assurance->description }}</p>
                             <div class="d-flex justify-content-center mb-2">
                                 <a type="button" data-bs-toggle="modal"
-                                    data-bs-target="#consultationModal{{ $assurance->id }}">
+                                    data-bs-target="#assuranceModal{{ $assurance->id }}">
                                     <span class="btn btn-sm btn-primary px-3 border-end"
                                         style="border-radius: 30px 0 0 30px;">Appliquer</span>
                                     <span class="btn btn-sm btn-primary px-3"
@@ -275,8 +274,8 @@
                     </div>
 
                     <!-- Modal Start -->
-                    <div class="modal fade" id="consultationModal{{ $assurance->id }}" tabindex="-1"
-                        aria-labelledby="consultationModalLabel{{ $assurance->id }}" aria-hidden="true">
+                    <div class="modal fade" id="assuranceModal{{ $assurance->id }}" tabindex="-1"
+                        aria-labelledby="assuranceModalLabel{{ $assurance->id }}" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -336,6 +335,8 @@
     </div>
     <!-- Assurances Section End -->
 
+
+
     <!-- Display Reviews Table Start -->
     <div class="container-xxl py-5">
         <div class="container">
@@ -382,26 +383,12 @@
     @include('client.layout.footer')
     <!-- Footer End -->
 
-
     <!-- Back to Top -->
     <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-
 
     <!-- JavaScript Libraries -->
     @include('client.layout.script')
     <script>
-        $(document).ready(function() {
-            $('#title').on('change', function() {
-                var title = $('#title').val();
-
-                // Construct the URL with query parameters for filtering
-                var url = '{{ route('consultation') }}' + '?title=' + encodeURIComponent(title);
-
-                // Redirect to the constructed URL, which will reload the page with the filters applied
-                window.location.href = url;
-            });
-        });
-
         $(document).ready(function() {
             $('form').on('submit', function(e) {
                 e.preventDefault();
@@ -412,67 +399,21 @@
                     data: form.serialize(),
                     success: function(response) {
                         $('#successModal .modal-body').text(response.success ||
-                            'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.'
-                            );
+                            'Operation completed successfully');
                         var successModal = new bootstrap.Modal(document.getElementById(
                             'successModal'));
                         successModal.show();
                         form[0].reset(); // Optional: reset form fields
                         form.closest('.modal').modal('hide'); // Hide the modal
                     },
-                    error: function(xhr) {
-                        console.error('Error:', xhr.responseText);
-                        $('#errorModal .modal-body').text(
-                            'Une erreur est survenue. Veuillez réessayer.');
-                        var errorModal = new bootstrap.Modal(document.getElementById(
-                            'errorModal'));
-                        errorModal.show();
+                    error: function(response) {
+                        alert('Une erreur s\'est produite. Veuillez réessayer.');
                     }
                 });
             });
         });
+
     </script>
-     <script>
-        $(document).ready(function() {
-    $('#title').on('change', function() {
-        var title = $('#title').val();
-
-        // Construct the URL with query parameters for filtering
-        var url = '{{ route('assuarance') }}' + '?title=' + encodeURIComponent(title);
-
-        // Redirect to the constructed URL, which will reload the page with the filters applied
-        window.location.href = url;
-    });
-});
-
-    $(document).ready(function() {
-        $('form').on('submit', function(e) {
-            e.preventDefault();
-            var form = $(this);
-            $.ajax({
-                url: form.attr('action'),
-                method: 'POST',
-                data: form.serialize(),
-                success: function(response) {
-                    $('#successModal .modal-body').text(response.success || 
-                        'Félicitations ! Vous serez contacté par un assistant dans les plus brefs délais.');
-                    var successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                    successModal.show();
-                    form[0].reset(); // Optional: reset form fields
-                    form.closest('.modal').modal('hide'); // Hide the modal
-                },
-                error: function(xhr) {
-                    console.error('Error:', xhr.responseText);
-                    $('#errorModal .modal-body').text('Une erreur est survenue. Veuillez réessayer.');
-                    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
-                    errorModal.show();
-                }
-            });
-        });
-    });
-</script>
-
-
 </body>
 
 </html>

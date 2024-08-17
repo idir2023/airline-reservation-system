@@ -16,11 +16,7 @@
 </div>
 @if(Auth::check())
     <!-- Utilisateur connecté, afficher le bouton de déconnexion -->
-    <a href="{{ route('logout') }}" class="nav-item nav-link btn btn-outline-danger me-2"
-       onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
+    <a href="{{ route('root') }}" class="nav-item nav-link btn btn-outline-primary me-2">Dashboard</a>
 @else
     <!-- Utilisateur non connecté, afficher les liens de connexion et d'inscription -->
     <a href="{{ route('login') }}" class="nav-item nav-link btn btn-outline-primary me-2">Login</a>
