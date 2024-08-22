@@ -3,6 +3,47 @@
 
 @include('client.layout.head')
 
+<style>
+    .package-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        border: 1px solid #ddd;
+        /* Border for visual separation */
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .package-item:hover {
+        transform: translateY(-10px);
+        /* Adds a subtle hover effect */
+    }
+
+    .package-item img {
+        height: 200px;
+        /* Adjust height as needed */
+        width: 100%;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .package-item .text-center {
+        padding: 15px;
+        flex-grow: 1;
+    }
+
+    .package-item .btn {
+        border-radius: 30px;
+    }
+
+    .package-item .border-bottom {
+        margin-top: 15px;
+    }
+</style>
+
 <body>
 
     <!-- Success Modal -->
